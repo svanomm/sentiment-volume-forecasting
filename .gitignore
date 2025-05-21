@@ -1,5 +1,6 @@
-.csv
-.dta
-.pkl
-.zip
-.pdf
+*.csv
+*.dta
+*.pkl
+*.zip
+*.pdf
+*.html
