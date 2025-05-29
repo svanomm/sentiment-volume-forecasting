@@ -1,2 +1,0 @@
-http://data.gdeltproject.org/gdeltv2/20180101074500.gkg.csv.zip	File is not a zip file
-http://data.gdeltproject.org/gdeltv2/20180101191500.gkg.csv.zip	File is not a zip file
