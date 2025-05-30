@@ -1,0 +1,9 @@
+http://data.gdeltproject.org/gdeltv2/20201025230000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201026040000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201110170000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201015230000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201021180000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201115011500.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201019031500.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20201116060000.gkg.csv.zip - Status Code: 404
+http://data.gdeltproject.org/gdeltv2/20210813044500.gkg.csv.zip - Status Code: 404

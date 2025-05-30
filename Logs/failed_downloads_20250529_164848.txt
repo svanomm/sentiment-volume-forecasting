@@ -1,1 +1,0 @@
-http://data.gdeltproject.org/gdeltv2/20201107044500.gkg.csv.zip - Status Code: 404
