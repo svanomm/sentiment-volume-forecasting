@@ -5,7 +5,7 @@ import warnings
 import datetime
 warnings.filterwarnings('ignore')
 
-path_to_data = r"../../data/raw/oil and other controls"
+path_to_data = r"./data/raw/oil and other controls"
 
 # Get the list of all csv files in path_to_data and all subfolders
 csv_files = []
@@ -61,6 +61,6 @@ df_wide = df_wide[df_wide.index >= datetime.datetime(2018, 1, 1, 0, 0)]
 df_wide = df_wide.add_prefix('Oil_')
 
 # Save the processed DataFrame to a pickle file
-output_path = r"../data/processed/oil_data.pkl"
+output_path = r"./data/processed/oil_data.pkl"
 with open(output_path, 'wb') as f:
     pickle.dump(df_wide, f)
