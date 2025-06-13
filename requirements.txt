@@ -47,6 +47,7 @@ optree==0.16.0
 packaging==25.0
 pandas==2.2.3
 parso==0.8.4
+patsy==1.0.1
 pillow==11.2.1
 platformdirs==4.3.8
 polars==1.30.0
@@ -54,6 +55,7 @@ prompt-toolkit==3.0.51
 protobuf==5.29.5
 psutil==7.0.0
 pure-eval==0.2.3
+pyarrow==20.0.0
 pygments==2.19.1
 pyparsing==3.2.3
 python-dateutil==2.9.0.post0
@@ -64,9 +66,11 @@ requests==2.32.3
 rich==14.0.0
 scikit-learn==1.6.1
 scipy==1.15.3
+seaborn==0.13.2
 setuptools==70.2.0
 six==1.17.0
 stack-data==0.6.3
+statsmodels==0.14.4
 sympy==1.13.3
 tensorboard==2.19.0
 tensorboard-data-server==0.7.2
@@ -75,6 +79,7 @@ termcolor==3.1.0
 threadpoolctl==3.6.0
 torch==2.7.0+cu128
 tornado==6.5.1
+tqdm==4.67.1
 traitlets==5.14.3
 typing-extensions==4.12.2
 tzdata==2025.2
