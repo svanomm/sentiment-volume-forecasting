@@ -1,11 +1,11 @@
 \documentclass[12pt]{article}
-\usepackage{tocloft}% to configure the ToC <<<<<
-\setlength{\cftsecnumwidth}{4.5ex}% set the width to the section number in the ToC <<<<<
-\renewcommand{\thesection}{\Roman{section}.} 
-\renewcommand{\thesubsection}{\quad \Alph{subsection}.}
-\renewcommand{\thesubsubsection}{\qquad \roman{subsubsection}.}
+%\usepackage{tocloft}% to configure the ToC <<<<<
+%\setlength{\cftsecnumwidth}{4.5ex}% set the width to the section number in the ToC <<<<<
+%\renewcommand{\thesection}{\Roman{section}.} 
+%\renewcommand{\thesubsection}{\quad \Alph{subsection}.}
+%\renewcommand{\thesubsubsection}{\qquad \roman{subsubsection}.}
 
-\usepackage[style=authoryear,bibencoding=auto,strict,backend=biber,natbib,maxcitenames=2]{biblatex}
+%\usepackage[style=authoryear,bibencoding=auto,strict,backend=biber,natbib,maxcitenames=2]{biblatex}
 
 \usepackage{amssymb,amsmath,amsfonts,bbm,bm,dcolumn,booktabs,eurosym,geometry,ulem,graphicx,color,xcolor,setspace,sectsty,comment,float,caption,pdflscape,subfigure,array,hyperref}
 \usepackage{xurl}
@@ -22,6 +22,8 @@
 \interfootnotelinepenalty=10000
 
 \geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+
+\usepackage[backend=bibtex]{biblatex}
 \addbibresource{biblio.bib}
 
 \begin{document}
@@ -44,32 +46,32 @@
 \doublespacing
 \section{Introduction}
 
-GDELT.\footnote{\citet{leetaru2013gdelt}.}
+GDELT.\footnote{\cite{leetaru2013gdelt}.}
 \section{Literature Review}
 \subsection{GDELT}
 Previous studies have assessed the usefulness of GDELT for predicting stock prices. However, apparently all of them have aggregated GDELT to a daily level, rather than using it at its original real-time 15-minute increments. To my knowledge, only one study has taken advantage of the GDELT sentiment measures outside of the basic metrics of Tone, count of articles, and number of positive/negative sentiment words for predict financial markets.
 
-\citet{nashir2023indonesian} incorporate GDELT data into a machine learning model to predict stock prices. The authors source a long span of daily stock data from Jan. 2008 to Dec. 2022 (5479 observations), specifically for the Jakarta Stock Exchange (JKSE) index of Indonesian stocks. The authors study 4 sentiment measures using GDELT data: tone, optimism, attention, and tone dispersion. These metrics are calculated at the daily level. The authors then train a modified version of an LSTM model using time series cross-validation. The authors document an extensive hyperparameter optimization, which yielded an improved model with a mean absolute percentage error (MAPE) of 0.8\%. They additionally find that a model trained with only the ``optimism" feature slightly outperforms the model with all four sentiment measures.\footnote{The combined model outperforms the other models that include only a single sentiment metric (tone, attention, or tone dispersion).} The authors do not compare their results to a Naive forecast.
+\cite{nashir2023indonesian} incorporate GDELT data into a machine learning model to predict stock prices. The authors source a long span of daily stock data from Jan. 2008 to Dec. 2022 (5479 observations), specifically for the Jakarta Stock Exchange (JKSE) index of Indonesian stocks. The authors study 4 sentiment measures using GDELT data: tone, optimism, attention, and tone dispersion. These metrics are calculated at the daily level. The authors then train a modified version of an LSTM model using time series cross-validation. The authors document an extensive hyperparameter optimization, which yielded an improved model with a mean absolute percentage error (MAPE) of 0.8\%. They additionally find that a model trained with only the ``optimism" feature slightly outperforms the model with all four sentiment measures.\footnote{The combined model outperforms the other models that include only a single sentiment metric (tone, attention, or tone dispersion).} The authors do not compare their results to a Naive forecast.
 
-\citet{wang2024ensemble} use GDELT data to inform the prediction of a variety of individual stocks and indices. They do not identify articles specific to each stock, instead summing the number of article mentions and the sum of Tone for each CAMEO code. CAMEO codes provide high-level descriptions of conflict identified in an article, e.g. ``Threaten" or ``Engage in political dissent." The authors then evaluate causal relationships between the CAMEO-specific metrics with each stock price at the daily level from Jan. 2018 to Feb. 2022. These causal relationships are incorporated into an LSTM model to predict stock prices. The authors report that this model performs best out of a variety of other models (including ARIMA, VAR, etc.). Unfortunately, the authors do not compare the performance of their model to a Naive prediction, and a close look at their Figures 9 and 10 shows that their best model essentially predicts the previous stock price. In other words, they likely do not beat a Naive forecast.
+\cite{wang2024ensemble} use GDELT data to inform the prediction of a variety of individual stocks and indices. They do not identify articles specific to each stock, instead summing the number of article mentions and the sum of Tone for each CAMEO code. CAMEO codes provide high-level descriptions of conflict identified in an article, e.g. ``Threaten" or ``Engage in political dissent." The authors then evaluate causal relationships between the CAMEO-specific metrics with each stock price at the daily level from Jan. 2018 to Feb. 2022. These causal relationships are incorporated into an LSTM model to predict stock prices. The authors report that this model performs best out of a variety of other models (including ARIMA, VAR, etc.). Unfortunately, the authors do not compare the performance of their model to a Naive prediction, and a close look at their Figures 9 and 10 shows that their best model essentially predicts the previous stock price. In other words, they likely do not beat a Naive forecast.
 
-\citet{consoli2021information} assess the use of GDELT for modeling sovereign spreads in the European bond market. The time series of interest is the sovereign spread of Italy vs Germany with respect to 10-year bond yields, with 468 data points covering a time period of Mar. 2015 to Aug. 2019. The authors filtered GDELT to identify articles specific to macroeconomic discussions in the locations of interest. They identify a subset of 45 GDELT variables that are both quantitatively and qualitatively relevant to bond markets. The authors then include these variables along with bond market data in a probabilistic LSTM model, yielding an out-of-sample R-squared of 0.23 for predicting changes in the dependent variable. While the study suffers from a small sample size and does not compare its accuracy to a Naive forecast, it provides robust evidence that GDELT could be useful for predicting bond markets.
+\cite{consoli2021information} assess the use of GDELT for modeling sovereign spreads in the European bond market. The time series of interest is the sovereign spread of Italy vs Germany with respect to 10-year bond yields, with 468 data points covering a time period of Mar. 2015 to Aug. 2019. The authors filtered GDELT to identify articles specific to macroeconomic discussions in the locations of interest. They identify a subset of 45 GDELT variables that are both quantitatively and qualitatively relevant to bond markets. The authors then include these variables along with bond market data in a probabilistic LSTM model, yielding an out-of-sample R-squared of 0.23 for predicting changes in the dependent variable. While the study suffers from a small sample size and does not compare its accuracy to a Naive forecast, it provides robust evidence that GDELT could be useful for predicting bond markets.
 
-\citet{jakel2019using} investigates correlations between GDELT sentiment and the stock prices of U.S. technology companies. The author sourced approximately 60,000 articles over a 29-day period in 2019. He then averaged the sentiment Tone by company and day to join to 29 days of stock price data for Facebook, Apple, Amazon, Alphabet and Tesla. Analyzing the correlation between sentiment and stock price, the author found a generally contrarian relationship. However, the results are inconclusive due to a small sample size.
+\cite{jakel2019using} investigates correlations between GDELT sentiment and the stock prices of U.S. technology companies. The author sourced approximately 60,000 articles over a 29-day period in 2019. He then averaged the sentiment Tone by company and day to join to 29 days of stock price data for Facebook, Apple, Amazon, Alphabet and Tesla. Analyzing the correlation between sentiment and stock price, the author found a generally contrarian relationship. However, the results are inconclusive due to a small sample size.
 
 \cite{alamro2019predicting} use GDELT's Tone and count of articles per day to predict TASI, a Saudi stock market index. The authors filtered GDELT data to any articles that mention Saudi Arabia, then aggregate the data to the daily level, averaging the Tone metric and counting the number of articles per day. The authors then test a variety of models to predict the index price, finding that an LSTM model performs dramatically better than more traditional forecasting models. Unfortunately, the authors do not report the specification of the LSTM model, any scale-independent measures of model fit, any comparisons to a Naive forecast, any tests of whether the sentiment measures add predictive value, nor any graphs of predicted vs actual stock prices. It is therefore unclear whether the authors' LSTM model provides better-than-Naive performance or if the sentiment measures actually improved the fit of the model.
 
 \subsection{Airline Stock Prediction}
-\citet{kaplanski2010sentiment} study the short-run effects of major airline disasters on the stock market at large. They identify 288 aviation disasters over a 58-year period and analyze the average change in NYSE Composite Index returns in the days that follow each disaster. The authors find that, on average, there is a noticeable decrease in market returns the day after an airline disaster. Following a sharp decrease in the first two days, the market returns to normal after approximately 2 weeks. They show that the lost value in the stock market is over 60 times larger than the economic loss incurred by the disaster. These results support the idea that anxiety-inducing events can have an outsized effect on the market.
+\cite{kaplanski2010sentiment} study the short-run effects of major airline disasters on the stock market at large. They identify 288 aviation disasters over a 58-year period and analyze the average change in NYSE Composite Index returns in the days that follow each disaster. The authors find that, on average, there is a noticeable decrease in market returns the day after an airline disaster. Following a sharp decrease in the first two days, the market returns to normal after approximately 2 weeks. They show that the lost value in the stock market is over 60 times larger than the economic loss incurred by the disaster. These results support the idea that anxiety-inducing events can have an outsized effect on the market.
 
 \subsection{Stock Volume Prediction}
 The fact that most traders are concerned with predicting stock prices makes stock prices nearly impossible to predict. An average day trader with access to the same (or worse) stock data as everyone else in the market is almost certainly unable to predict prices better than a firm employing hundreds or thousands of Ph.Ds to do predictions full-time. However, predicting trading volumes (which do not provide direct information of prices) is a more attainable problem.
 
-\citet{goyenko2024trading} model the potential benefits associated with accurate predictions of trading volume. The authors explain that while trading volume is not particularly useful to a day trader, inaccurate forecasts of volume could lead a large trading firm to miscalculate the price impact of a trade. In the authors' theoretical model, overestimating the amount of trading volume when making a large trade would increase the net trading cost to the firm. The authors create a predictive model of changes in the log of dollar trading volume using technical indicators for 4700 stocks over a period of 1258 days. Relative to the prediction accuracy of a moving average model, their best model (an LSTM with 175 features) obtains a relative $R^2$ of around 20\%. This demonstrates that, unlike stock price prediction, models can consistently predict daily trading volumes over a wide range of stocks.
+\cite{goyenko2024trading} model the potential benefits associated with accurate predictions of trading volume. The authors explain that while trading volume is not particularly useful to a day trader, inaccurate forecasts of volume could lead a large trading firm to miscalculate the price impact of a trade. In the authors' theoretical model, overestimating the amount of trading volume when making a large trade would increase the net trading cost to the firm. The authors create a predictive model of changes in the log of dollar trading volume using technical indicators for 4700 stocks over a period of 1258 days. Relative to the prediction accuracy of a moving average model, their best model (an LSTM with 175 features) obtains a relative $R^2$ of around 20\%. This demonstrates that, unlike stock price prediction, models can consistently predict daily trading volumes over a wide range of stocks.
 
-\citet{cucuringu2025forecasting} investigate the ability of machine learning models to predict intraday trading volumes. The authors analyze 15-minute data over a period of 6 months for each constituent stock in the S\&P 500 index. A baseline model is able to predict out-of-sample volumes with an $R^2$ of 0.265, while their best model attains an $R^2$ of 0.624. The authors then demonstrate the usefulness of their model for large traders seeking to minimize the price impact of a trade. Their model improves the volume-weighted average price (VWAP) order execution risk for a sample of 5 stocks by an average of around 29\%, compared to a baseline model.
+\cite{cucuringu2025forecasting} investigate the ability of machine learning models to predict intraday trading volumes. The authors analyze 15-minute data over a period of 6 months for each constituent stock in the S\&P 500 index. A baseline model is able to predict out-of-sample volumes with an $R^2$ of 0.265, while their best model attains an $R^2$ of 0.624. The authors then demonstrate the usefulness of their model for large traders seeking to minimize the price impact of a trade. Their model improves the volume-weighted average price (VWAP) order execution risk for a sample of 5 stocks by an average of around 29\%, compared to a baseline model.
 
-\citet{satish2014predicting} make the case for using a statistical model to predict trading volumes. The authors explain that at the time,  the typical approach taken by firms was to just use moving averages of trading volumes as a predictor. The authors combine two ARMA models with varying levels of historical data (intraday and daily) to predict trading volume. After calibrating their model, the authors were able to increase VWAP error performance by 9\% compared to the typical moving average approach. Notably, the authors explain that news events can affect VWAP tracking error, though they do not include news sentiment in their model.
+\cite{satish2014predicting} make the case for using a statistical model to predict trading volumes. The authors explain that at the time,  the typical approach taken by firms was to just use moving averages of trading volumes as a predictor. The authors combine two ARMA models with varying levels of historical data (intraday and daily) to predict trading volume. After calibrating their model, the authors were able to increase VWAP error performance by 9\% compared to the typical moving average approach. Notably, the authors explain that news events can affect VWAP tracking error, though they do not include news sentiment in their model.
 
 \section{Methods}
 Below, I explain the data preparation and modelling techniques used to evaluate the usefulness of GDELT for predicting airline stocks.\footnote{All processing and modelling was performed on a Windows 10 desktop with the following specifications: 128GB of DDR4 RAM, an Nvidia RTX 2070 Super (8GB VRAM), and an AMD Ryzen 5 3600 processor. Some of the computations described below likely would not run on anything less than 128GB of RAM without modification.}
@@ -172,7 +174,7 @@ I then calculate a variety of moving averages for each metric, with the followin
 Hyperparameter tuning is the process of changing some of the input settings in the model to optimize its performance. I use a randomized grid search, in which parameters are randomly chosen from within a specified range, to test many possible combinations of settings. I then evaluate each combination by its predictive power on the test sets, and choose the model with the best performance. I varied the following parameters:
 
 \subsubsection{Shapley Values}
-The final model is extremely large and complex. Machine learning models are often described as being ``black boxes,'' with no possible way of understanding how or why they work. However, Shapley values provide some insight into the model. Shapley values are calculated by randomly selecting an observation, perturbing some of its features, and seeing how much the predicted sales changes as a result. We then repeat this procedure many thousands of times to get an understanding of how much each variable contributes to the final predicted value. I implemented the Shapley value calculations with the \textsf{shap} package in Python.\footnote{\citet{shap}.}
+The final model is extremely large and complex. Machine learning models are often described as being ``black boxes,'' with no possible way of understanding how or why they work. However, Shapley values provide some insight into the model. Shapley values are calculated by randomly selecting an observation, perturbing some of its features, and seeing how much the predicted sales changes as a result. We then repeat this procedure many thousands of times to get an understanding of how much each variable contributes to the final predicted value. I implemented the Shapley value calculations with the \textsf{shap} package in Python.\footnote{\cite{shap}.}
 
 \subsection{Ensemble Models}
 
@@ -184,14 +186,14 @@ First, Figure \ref{fig:contemp_open} reports the contemporaneous correlation in 
 \begin{figure}[H]
     \centering
     \caption{Contemporaneous Correlation, Change in Open Price}
-    \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Open.png}
+%    \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Open.png}
     \label{fig:contemp_open}
 \end{figure}
 Next, Figure \ref{fig:contemp_vol} reports the contemporaneous correlation in first-differences of trading volume for the airline stocks of interest.
 \begin{figure}[H]
     \centering
     \caption{Contemporaneous Correlation, Change in Trading Volume}
-    \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Volume.png}
+ %   \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Volume.png}
     \label{fig:contemp_vol}
 \end{figure}
 These figures show that the airline stocks exhibit a substantial and positive correlation. The airline-relevant indices (ITA, IYT, and JETS) have lower but still-relevant positive correlations. 
@@ -201,14 +203,14 @@ Next, I report the correlations among the lag of these variables. Figure \ref{fi
 \begin{figure}[H]
     \centering
     \caption{Lagged Correlation, Change in Open Price}
-    \includegraphics[width=0.75\linewidth]{Figures/Lagged_Open.png}
+ %   \includegraphics[width=0.75\linewidth]{Figures/Lagged_Open.png}
     \label{fig:lagged_open}
 \end{figure}
 Similarly, Figure \ref{fig:lagged_volume} reports the correlations among changes in trading volumes.
 \begin{figure}[H]
     \centering
     \caption{Lagged Correlation, Change in Trading Volume}
-    \includegraphics[width=0.75\linewidth]{Figures/Lagged_Volume.png}
+%    \includegraphics[width=0.75\linewidth]{Figures/Lagged_Volume.png}
     \label{fig:lagged_volume}
 \end{figure}
 Due to the highly unpredictable nature of the stock market, these correlations are much smaller. For example, United Airlines and Delta Airlines have a contemporaneous correlation of 0.83 with respect to price changes, but lagged price changes for Delta have only a 0.038 correlation with current price changes for United.

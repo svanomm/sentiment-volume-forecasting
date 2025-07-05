@@ -1,0 +1,451 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global/global}
+  \entry{alamro2019predicting}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=AR}{%
+         family={Alamro},
+         familyi={A\bibinitperiod},
+         given={Rawan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={McCarren},
+         familyi={M\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ARA}{%
+         family={Al-Rasheed},
+         familyi={A\bibinithyphendelim R\bibinitperiod},
+         given={Amal},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{ARMAARA1}
+    \strng{fullhash}{ARMAARA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{Advances in Data Science, Cyber Security and IT Applications: First International Conference on Computing, ICC 2019, Riyadh, Saudi Arabia, December 10--12, 2019, Proceedings, Part I 1}
+    \field{pages}{317\bibrangedash 328}
+    \field{title}{Predicting saudi stock market index by incorporating gdelt using multivariate time series modelling}
+    \field{year}{2019}
+  \endentry
+
+  \entry{consoli2021information}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=CS}{%
+         family={Consoli},
+         familyi={C\bibinitperiod},
+         given={Sergio},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=TPL}{%
+         family={Tiozzo\bibnamedelima Pezzoli},
+         familyi={T\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Luca},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=TE}{%
+         family={Tosetti},
+         familyi={T\bibinitperiod},
+         given={Elisa},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{CSTPLTE1}
+    \strng{fullhash}{CSTPLTE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Mining Data for Financial Applications: 5th ECML PKDD Workshop, MIDAS 2020, Ghent, Belgium, September 18, 2020, Revised Selected Papers 5}
+    \field{pages}{55\bibrangedash 67}
+    \field{title}{Information extraction from the GDELT database to analyse EU sovereign bond markets}
+    \field{year}{2021}
+  \endentry
+
+  \entry{cucuringu2025forecasting}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=CM}{%
+         family={Cucuringu},
+         familyi={C\bibinitperiod},
+         given={Mihai},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Kang},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Chao},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CMLKZC1}
+    \strng{fullhash}{CMLKZC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Forecasting Intraday Volume in Equity Markets with Machine Learning}
+    \field{journaltitle}{arXiv preprint arXiv:2505.08180}
+    \field{year}{2025}
+  \endentry
+
+  \entry{goyenko2024trading}{report}{}{}
+    \name{author}{5}{}{%
+      {{hash=GR}{%
+         family={Goyenko},
+         familyi={G\bibinitperiod},
+         given={Ruslan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KBT}{%
+         family={Kelly},
+         familyi={K\bibinitperiod},
+         given={Bryan\bibnamedelima T},
+         giveni={B\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=MTJ}{%
+         family={Moskowitz},
+         familyi={M\bibinitperiod},
+         given={Tobias\bibnamedelima J},
+         giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=SY}{%
+         family={Su},
+         familyi={S\bibinitperiod},
+         given={Yinan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Chao},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GR+1}
+    \strng{fullhash}{GRKBTMTJSYZC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Trading volume alpha}
+    \list{institution}{1}{%
+      {National Bureau of Economic Research}%
+    }
+    \field{type}{techreport}
+    \field{year}{2024}
+  \endentry
+
+  \entry{jakel2019using}{thesis}{}{}
+    \name{author}{1}{}{%
+      {{hash=JT}{%
+         family={Jakel},
+         familyi={J\bibinitperiod},
+         given={Tibor},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JT1}
+    \strng{fullhash}{JT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Using Sentiment Data from the Global Database for Events, Language and Tone (GDELT) to Predict Short-Term Stock Price Developments}
+    \list{institution}{1}{%
+      {University of Twente}%
+    }
+    \field{type}{{B.S.} thesis}
+    \field{year}{2019}
+  \endentry
+
+  \entry{kaplanski2010sentiment}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=KG}{%
+         family={Kaplanski},
+         familyi={K\bibinitperiod},
+         given={Guy},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Levy},
+         familyi={L\bibinitperiod},
+         given={Haim},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{KGLH1}
+    \strng{fullhash}{KGLH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{2}
+    \field{pages}{174\bibrangedash 201}
+    \field{title}{Sentiment and stock prices: The case of aviation disasters}
+    \field{volume}{95}
+    \field{journaltitle}{Journal of financial economics}
+    \field{year}{2010}
+  \endentry
+
+  \entry{leetaru2013gdelt}{inproceedings}{}{}
+    \name{author}{2}{}{%
+      {{hash=LK}{%
+         family={Leetaru},
+         familyi={L\bibinitperiod},
+         given={Kalev},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SPA}{%
+         family={Schrodt},
+         familyi={S\bibinitperiod},
+         given={Philip\bibnamedelima A},
+         giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Citeseer}%
+    }
+    \strng{namehash}{LKSPA1}
+    \strng{fullhash}{LKSPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{ISA annual convention}
+    \field{number}{4}
+    \field{pages}{1\bibrangedash 49}
+    \field{title}{Gdelt: Global data on events, location, and tone, 1979--2012}
+    \field{volume}{2}
+    \field{year}{2013}
+  \endentry
+
+  \entry{shap}{incollection}{}{}
+    \name{author}{2}{}{%
+      {{hash=LSM}{%
+         family={Lundberg},
+         familyi={L\bibinitperiod},
+         given={Scott\bibnamedelima M},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=LSI}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Su-In},
+         giveni={S\bibinithyphendelim I\bibinitperiod},
+      }}%
+    }
+    \name{editor}{7}{}{%
+      {{hash=GI}{%
+         family={Guyon},
+         familyi={G\bibinitperiod},
+         given={I.},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=LUV}{%
+         family={Luxburg},
+         familyi={L\bibinitperiod},
+         given={U.\bibnamedelima V.},
+         giveni={U\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bengio},
+         familyi={B\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wallach},
+         familyi={W\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=FR}{%
+         family={Fergus},
+         familyi={F\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=VS}{%
+         family={Vishwanathan},
+         familyi={V\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Garnett},
+         familyi={G\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Curran Associates, Inc.}%
+    }
+    \strng{namehash}{LSMLSI1}
+    \strng{fullhash}{LSMLSI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Advances in Neural Information Processing Systems 30}
+    \field{pages}{4765\bibrangedash 4774}
+    \field{title}{A Unified Approach to Interpreting Model Predictions}
+    \verb{url}
+    \verb http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-m
+    \verb odel-predictions.pdf
+    \endverb
+    \field{year}{2017}
+  \endentry
+
+  \entry{nashir2023indonesian}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=NR}{%
+         family={Nashir},
+         familyi={N\bibinitperiod},
+         given={Ridhwan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GPH}{%
+         family={Gunawan},
+         familyi={G\bibinitperiod},
+         given={Putu\bibnamedelima Harry},
+         giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=PI}{%
+         family={Palupi},
+         familyi={P\bibinitperiod},
+         given={Irma},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{NRGPHPI1}
+    \strng{fullhash}{NRGPHPI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{booktitle}{2023 3rd International Conference on Intelligent Cybernetics Technology \& Applications (ICICyTA)}
+    \field{pages}{243\bibrangedash 248}
+    \field{title}{Indonesian Stock Index Price Prediction Using the Stacked Bidirectional Unidirectional Long Short-Term Memory (SBU-LSTM) with the GDELT News Sentiment}
+    \field{year}{2023}
+  \endentry
+
+  \entry{satish2014predicting}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=SV}{%
+         family={Satish},
+         familyi={S\bibinitperiod},
+         given={Venkatesh},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Saxena},
+         familyi={S\bibinitperiod},
+         given={Abhay},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Palmer},
+         familyi={P\bibinitperiod},
+         given={Max},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SVSAPM1}
+    \strng{fullhash}{SVSAPM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{3}
+    \field{pages}{15\bibrangedash 25}
+    \field{title}{Predicting intraday trading volume and volume percentages}
+    \field{volume}{9}
+    \field{journaltitle}{The journal of trading}
+    \field{year}{2014}
+  \endentry
+
+  \entry{wang2024ensemble}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=WJ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Juanjuan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZS}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Shujie},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LW}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Wentong},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=JL}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Lin},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{WJ+1}
+    \strng{fullhash}{WJZSLWJL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{number}{6}
+    \field{pages}{1998\bibrangedash 2020}
+    \field{title}{An ensemble model for stock index prediction based on media attention and emotional causal inference}
+    \field{volume}{43}
+    \field{journaltitle}{Journal of Forecasting}
+    \field{year}{2024}
+  \endentry
+\enddatalist
+\endinput
