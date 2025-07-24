@@ -185,42 +185,34 @@ Each of these hyperparameters acts as a regularization term, preventing the mode
 \section{Results and Analysis}
 \subsection{Summary Analysis}
 \subsection{Correlation Analysis}
-\subsubsection{Contemporaneous Correlation}
-First, Figure \ref{fig:contemp_open} reports the contemporaneous correlation in first-differences of open price for the airline stocks of interest. Correlations are calculated using the 15-minute data.
-\begin{figure}[H]
-    \centering
-    \caption{Contemporaneous Correlation, Change in Open Price}
-%    \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Open.png}
-    \label{fig:contemp_open}
-\end{figure}
-Next, Figure \ref{fig:contemp_vol} reports the contemporaneous correlation in first-differences of trading volume for the airline stocks of interest.
-\begin{figure}[H]
-    \centering
-    \caption{Contemporaneous Correlation, Change in Trading Volume}
- %   \includegraphics[width=0.75\linewidth]{Figures/Contemporaneous_Volume.png}
-    \label{fig:contemp_vol}
-\end{figure}
-These figures show that the airline stocks exhibit a substantial and positive correlation. The airline-relevant indices (ITA, IYT, and JETS) have lower but still-relevant positive correlations. 
+I report the correlations among the lag of these variables. Figure \ref{fig:lagged_volume} reports correlations between a stock's volume at time $t$ (the rows) with a stock's volume at time $t-1$ (the columns). For example, the diagonal entries report the first-order autocorrelation of each stock.
 
-\subsubsection{Lagged Correlation}
-Next, I report the correlations among the lag of these variables. Figure \ref{fig:lagged_open} reports correlations between a stock's change in price at time $t$ (the rows) with a stock's change in price at time $t-1$ (the columns). For example, the diagonal entries report the first-order autocorrelation of each stock.
 \begin{figure}[H]
     \centering
-    \caption{Lagged Correlation, Change in Open Price}
- %   \includegraphics[width=0.75\linewidth]{Figures/Lagged_Open.png}
-    \label{fig:lagged_open}
-\end{figure}
-Similarly, Figure \ref{fig:lagged_volume} reports the correlations among changes in trading volumes.
-\begin{figure}[H]
-    \centering
-    \caption{Lagged Correlation, Change in Trading Volume}
+    \caption{Lagged Correlation, 15-Minute Lag of Trading Volume}
     \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume.png}
     \label{fig:lagged_volume}
 \end{figure}
-Due to the highly unpredictable nature of the stock market, these correlations are much smaller. For example, United Airlines and Delta Airlines have a contemporaneous correlation of 0.83 with respect to price changes, but lagged price changes for Delta have only a 0.038 correlation with current price changes for United.
 
-While the lagged correlations for prices are mostly positive, the lagged correlations in trading volume are almost all negative, a reversal compared to the contemporaneous chart.
+Similarly, Figure \ref{fig:lagged_volume_day} reports volume correlations compared to the same time on the previous trading day.
 
+\begin{figure}[H]
+    \centering
+    \caption{Lagged Correlation, 1-Day Lag of Trading Volume}
+    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume_Day.png}
+    \label{fig:lagged_volume_day}
+\end{figure}
+
+Stock volume is clearly autocorrelated. Rather than report volumes autocorrelations, Figure \ref{fig:autocorrelations} reports the autocorrelations of the change in 15-minute trading volume. 
+
+\begin{figure}[H]
+    \centering
+    \caption{Autocorrelations of Change in Trading Volume}
+    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.png}
+    \label{fig:autocorrelations}
+\end{figure}
+
+The stocks show a similar pattern: change in volume is negatively correlated with change in volume in the most recent few periods, and positively correlated with period 26, i.e. one trading day ago.
 
 \subsection{Models}
 Before reporting the model results, we establish a baseline model. Similar to \textcite{goyenko2024trading}, we use a simple average of the trading volume for the past 5 days as a baseline predictor of volume.\footnote{Specifically, we use the 15-minute volume at the same time of the previous 5 trading days. The model comes from an OLS regression of volume on the average historical volume, plus a constant.} This simple model performs quite well, with an out-of-sample $R^2$ of just under 0.56 over the entire testing period.

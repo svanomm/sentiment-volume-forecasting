@@ -56,7 +56,7 @@ df = df.dropna()
 df.sort_values(by=['Time', 'ticker'], inplace=True)
 df.index = df[['Time','ticker']]
 df['date'] = df['Time']
-df = df[df['date'] >= datetime.datetime(2018, 1, 1, 0, 0)]
+df = df[df['date'] >= datetime.datetime(2018, 1, 2, 9, 45)]
 df = df[df['ticker'].isin(['AAL', 'ALGT', 'ALK', 'DAL', 'JBLU', 'LUV', 'UAL'])]
 
 y_cols = ['Volume']
@@ -84,3 +84,6 @@ x_eval = np.concatenate((x_val, x_test), axis=0)
 y_eval = y[split_val:]
 
 print(f"OLS: {ols.score(x_eval, y_eval)}")
+
+predictions = ols.predict(x_eval)
+pickle.dump(predictions, open(f'./output/models/baseline predictions.pkl', 'wb'))
