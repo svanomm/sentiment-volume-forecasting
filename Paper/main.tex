@@ -217,7 +217,75 @@ The stocks show a similar pattern: change in volume is negatively correlated wit
 \subsection{Models}
 Before reporting the model results, we establish a baseline model. Similar to \textcite{goyenko2024trading}, we use a simple average of the trading volume for the past 5 days as a baseline predictor of volume.\footnote{Specifically, we use the 15-minute volume at the same time of the previous 5 trading days. The model comes from an OLS regression of volume on the average historical volume, plus a constant.} This simple model performs quite well, with an out-of-sample $R^2$ of just under 0.56 over the entire testing period.
 
+All models are evaluated using the out-of-sample $R^2$, which we call $R^2_{OOS}$. Note that unlike an in-sample $R^2$, it is possible for a model to have a negative $R^2_{OOS}$ if the model performs worse than guessing the mean of the dependent variable.
+
 \input{../output/r2_table_overall.tex}
+
+\subsection{Model Predictions}
+All results in this section use the LightGBM model with the highest $R^2_{OOS}$ from the table above, unless otherwise specified.
+
+First, we assess the model's out of sample performance on the validation and test sets (a combined 18 months of data) on a variety of subsets of the data. Figure \ref{fig:absolute_percent_error_distribution} reports the cumulative distribution of absolute percent error for the best model, as well as the baseline model. When plotted this way, a model is better at predicting volume if its cumulative distribution lies to the left of the other model's cumulative distribution. The figure shows that the LightGBM model is uniformly and significantly better than the baseline model on an absolute percent error basis.
+
+\begin{figure}[H]
+    \centering
+    \caption{Absolute Percent Error Distribution}
+    \includegraphics[width=0.75\linewidth]{../Output/absolute_percent_error_distribution.png}
+    \label{fig:absolute_percent_error_distribution}
+\end{figure}
+
+Since stock volume can vary periodically, it is worth investigating the model's average performance at different times. Figure \ref{fig:mape_by_time} reports the mean absolute percent error (MAPE) by time of day.
+\begin{figure}[H]
+    \centering
+    \caption{MAPE by Time of Day}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time.png}
+    \label{fig:mape_by_time}
+\end{figure}
+The model is significantly worse at predicting volume in the first two periods of the trading day, which are highly volatile. The model is significantly better at predicting volume towards the end of the day; however, this is on a MAPE basis and so the results would differ on an absolute error basis (where end-of-day usually sees a spike in volume traded). Mid-day predictions are approximately of equal accuracy on average.
+
+Figure \ref{fig:mape_by_time_by_ticker} breaks out the Figure above into individual tickers. This shows that the stocks generally share the same pattern described above, with some minor exceptions. ALGT is noticeably more variable than the other stocks, since its 95\% confidence intervals are wide and its MAPE is higher than the other stocks. This is likely due to ALGT's low trading volume, which makes it more difficult to predict. The other stocks generally have similar MAPE patterns, with the exception of JBLU, which has a much lower MAPE in the first two periods of the day. This suggests that JBLU's trading volume is more predictable in the early morning than the other stocks.
+\begin{figure}[H]
+    \centering
+    \caption{MAPE by Time of Day and Ticker}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time_by_ticker.png}
+    \label{fig:mape_by_time_by_ticker}
+\end{figure}
+
+Next, we assess the model's performance by day of week and day of month. Figure \ref{fig:mape_by_day_of_week} reports the MAPE by day of week, while Figure \ref{fig:mape_by_day_of_month} reports the MAPE by day of month. We see that the model is slightly less accurate on Mondays and Fridays, which is likely due to the fact that these days are more volatile than the other days of the week. The model also slightly decreases in performance as the month progresses, though there is much variance here.\footnote{Confidence intervals are not reported in this chart because they are very wide.}
+\begin{figure}[H]
+    \centering
+    \caption{MAPE by Day of Week}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_week.png}
+    \label{fig:mape_by_day_of_week}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{MAPE by Day of Month}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_month.png}
+    \label{fig:mape_by_day_of_month}
+\end{figure}
+
+\subsubsection{Sentiment Contribution}
+We can assess how important the sentiment measures are to the best model's performance through the use of Shapley values. [[Explanation of Shapley values.]]
+
+First, we report a plot that ranks all features by mean absolute Shapley value. Figure \ref{fig:shapley_overall} reports the top 20 features by mean absolute Shapley value, which is a measure of how much each feature contributes to the model's predictions.
+\begin{figure}[H]
+    \centering
+    \caption{Top 20 Features by Mean Absolute Shapley Value}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.png}
+    \label{fig:shapley_overall}
+\end{figure}
+
+Unsurprisingly, the most important features are traditional financial and time indicators. The 15-minute lag of stock volume and 1 day (26-period) lag of volume are the most important features, followed by an indicator for whether the time is the last 15 minutes of the trading day. Moving average terms, differences in volume, and additional lags make up much of the top 20 most important features. However, one sentiment feature is included in the top 20: the 4-period cumulative sum of the 22nd dimension of the headline LLM embedding.\footnote{LLM dimensions are 0-indexed, so feature name llm\_dimension\_21\_cum04\_lag01 refers to the 22nd dimension of the 32-dimensional LLM embedding vector.}
+
+To further explore the sentiment features' contribution to the model, we report the mean absolute Shapley value for the sentiment features, sorted from highest to lowest.\footnote{Note that each sentiment variable has 5 features included: the original variable, and 4 cumulative sums of differing windows. We sum the Shapley values across these features before taking the mean absolute value.} Figure \ref{fig:shapley_sentiment} reports the top 10 sentiment features by mean absolute Shapley value. As a reference point, the mean absolute Shapley value of the most important feature (the 15-minute lag of volume) is over 160,000.
+\begin{figure}[H]
+    \centering
+    \caption{Top 10 Sentiment Features by Mean Absolute Shapley Value}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.png}
+    \label{fig:shapley_sentiment}
+\end{figure}
+There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 22nd dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance. Overall, it is clear that sentiment measures add very little to the model's predictions, since nearly all sentiment features individually are less than 1000.
 
 \newpage
 \section{Discussion}
