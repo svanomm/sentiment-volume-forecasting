@@ -101,6 +101,40 @@
     \field{year}{2019}
   \endentry
 
+  \entry{chen2016forecasting}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=CR}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ran},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=FY}{%
+         family={Feng},
+         familyi={F\bibinitperiod},
+         given={Yiyong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Palomar},
+         familyi={P\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CR+1}
+    \strng{fullhash}{CRFYPD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Forecasting intraday trading volume: a kalman filter approach}
+    \field{journaltitle}{Available at SSRN 3101695}
+    \field{year}{2016}
+  \endentry
+
   \entry{consoli2021information}{inproceedings}{}{}
     \name{author}{3}{}{%
       {{hash=CS}{%
