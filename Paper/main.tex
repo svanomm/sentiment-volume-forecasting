@@ -223,14 +223,18 @@ Stock volume is clearly autocorrelated. Rather than report volumes autocorrelati
 The stocks show a similar pattern: change in volume is negatively correlated with change in volume in the most recent few periods, and positively correlated with period 26, i.e. one trading day ago.
 
 \subsection{Models}
-Before reporting the model results, we establish a baseline model. Similar to \textcite{goyenko2024trading}, we use a simple average of the trading volume for the past 5 days as a baseline predictor of volume.\footnote{Specifically, we use the 15-minute volume at the same time of the previous 5 trading days. The model comes from an OLS regression of volume on the average historical volume, plus a constant.} This simple model performs quite well, with an out-of-sample $R^2$ of just under 0.56 over the entire testing period.
+Before reporting the model results, we establish a baseline model. Similar to \textcite{goyenko2024trading}, we use a simple average of the trading volume for the past 5 days as a baseline predictor of volume.\footnote{Specifically, we use the 15-minute volume at the same time of the previous 5 trading days. Note that \textcite{goyenko2024trading} use the log-returns of dollar volume compared to a 5-day moving average, while we do not take logs.} This simple model performs quite well, with an out-of-sample $R^2$ of just under 0.55 over the entire testing period.
 
-All models are evaluated using the out-of-sample $R^2$, which we call $R^2_{OOS}$. Note that unlike an in-sample $R^2$, it is possible for a model to have a negative $R^2_{OOS}$ if the model performs worse than guessing the mean of the dependent variable.
+All models are evaluated using the out-of-sample $R^2$, described in the following formula:
+\begin{equation}
+    R^2_{OOS} = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
+\end{equation}
+In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically }
 
 \input{../output/r2_table_overall.tex}
 
 \subsection{Model Predictions}
-All results in this section use the LightGBM model with the highest $R^2_{OOS}$ from the table above, unless otherwise specified.
+All results in this section use the LightGBM model with the highest $R^2$ from the table above, unless otherwise specified.
 
 First, we assess the model's out of sample performance on the validation and test sets (a combined 18 months of data) on a variety of subsets of the data. Figure \ref{fig:absolute_percent_error_distribution} reports the cumulative distribution of absolute percent error for the best model, as well as the baseline model. When plotted this way, a model is better at predicting volume if its cumulative distribution lies to the left of the other model's cumulative distribution. The figure shows that the LightGBM model is uniformly and significantly better than the baseline model on an absolute percent error basis.
 
@@ -325,6 +329,9 @@ The model results confirm that stock volume can be accurately forecasted better 
 \subsection{Model Performance}
 A table showing the MAPE for each model tested is shown below.
 \input{../output/mape_table_overall.tex}
+
+\subsubsection{Alternative Model Specification}
+It is worth questioning whether, instead of predicting volume, the model would do better by predicting a normalized change in volume and then rescaling the predictions. We tried a similar method to \textcite{goyenko2024trading}, where we predict the change in volume compared to the baseline model's prediction. In testing the LightGBM model on the different feature sets, we found that these models do not improve the prediction of volume: using all features yields an $R^2$ of 0.6450, which is worse than our original model. Attempts to use the sentiment features alone or time features alone yielded models that predict volume worse than the baseline model.
 
 \subsection{Sentiment Measures}
 A complete list of the sentiment measures selected from GDELT's GKG is given below, along with their sources as reported by GDELT.\footnote{\url{http://data.gdeltproject.org/documentation/GCAM-MASTER-CODEBOOK.TXT}.}

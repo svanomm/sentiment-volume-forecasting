@@ -2,8 +2,7 @@ import pandas as pd
 import numpy as np
 import os, pickle
 import warnings, datetime
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score as r2 
 warnings.filterwarnings('ignore')
 
 path_to_data = r"./data/raw/stock prices"
@@ -49,8 +48,7 @@ for day_lag in range(1, 6):
         lagged_values = subset.groupby('ticker')['Volume'].shift(day_lag)
         df.loc[mask, f'Volume_Day_lag{day_lag:02d}'] = lagged_values.values
 
-df['Volume_Day_lagma5'] = df[['Volume_Day_lag01', 'Volume_Day_lag02', 'Volume_Day_lag03',
-                                         'Volume_Day_lag04', 'Volume_Day_lag05']].mean(axis=1)
+df['Volume_Day_lagma5'] = df[['Volume_Day_lag01', 'Volume_Day_lag02', 'Volume_Day_lag03', 'Volume_Day_lag04', 'Volume_Day_lag05']].mean(axis=1)
 
 df = df.dropna()
 df.sort_values(by=['Time', 'ticker'], inplace=True)
@@ -77,13 +75,10 @@ x_train = x[:split_val]
 x_val   = x[split_val:split_test]
 x_test  = x[split_test:]
 
-ols = LinearRegression()
-ols.fit(x_train, y_train)
-
 x_eval = np.concatenate((x_val, x_test), axis=0)
 y_eval = y[split_val:]
 
-print(f"OLS: {ols.score(x_eval, y_eval)}")
+print(f"Baseline: {r2(y_eval, x_eval)}")
 
-predictions = ols.predict(x_eval)
+predictions = x
 pickle.dump(predictions, open(f'./output/models/baseline predictions.pkl', 'wb'))

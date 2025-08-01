@@ -22,4 +22,5 @@
 \contentsline {section}{\numberline {6}Conclusion}{23}{section.6}%
 \contentsline {section}{\numberline {7}Appendix}{26}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Model Performance}{26}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Sentiment Measures}{27}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{27}{subsubsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.2}Sentiment Measures}{28}{subsection.7.2}%
