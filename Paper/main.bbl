@@ -256,6 +256,58 @@
     \field{year}{2024}
   \endentry
 
+  \entry{hopp2021extended}{article}{}{}
+    \name{author}{5}{}{%
+      {{hash=HFR}{%
+         family={Hopp},
+         familyi={H\bibinitperiod},
+         given={Frederic\bibnamedelima R},
+         giveni={F\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=FJT}{%
+         family={Fisher},
+         familyi={F\bibinitperiod},
+         given={Jacob\bibnamedelima T},
+         giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Cornell},
+         familyi={C\bibinitperiod},
+         given={Devin},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Huskey},
+         familyi={H\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=WR}{%
+         family={Weber},
+         familyi={W\bibinitperiod},
+         given={Ren{\'e}},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{HFR+1}
+    \strng{fullhash}{HFRFJTCDHRWR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{1}
+    \field{pages}{232\bibrangedash 246}
+    \field{title}{The extended Moral Foundations Dictionary (eMFD): Development and applications of a crowd-sourced approach to extracting moral intuitions from text}
+    \field{volume}{53}
+    \field{journaltitle}{Behavior research methods}
+    \field{year}{2021}
+  \endentry
+
   \entry{jakel2019using}{thesis}{}{}
     \name{author}{1}{}{%
       {{hash=JT}{%

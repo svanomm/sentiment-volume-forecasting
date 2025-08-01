@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  1 AUG 2025 00:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  1 AUG 2025 13:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -799,71 +799,89 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [12]
 
-[13]
+[13] (../Output/summary_volume.tex)
 
-[14] (../Output/r2_table_overall.tex
+[14]
+<../Output/monthly_volume_plot.pdf, id=272, 419.19548pt x 298.29831pt>
+File: ../Output/monthly_volume_plot.pdf Graphic file (type pdf)
+<use ../Output/monthly_volume_plot.pdf>
+Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 203.
+(pdftex.def)             Requested size: 328.82707pt x 233.99626pt.
+<../Output/alk_event_plot_52.pdf, id=276, 860.10648pt x 714.7616pt>
+File: ../Output/alk_event_plot_52.pdf Graphic file (type pdf)
+<use ../Output/alk_event_plot_52.pdf>
+Package pdftex.def Info: ../Output/alk_event_plot_52.pdf  used on input line 211.
+(pdftex.def)             Requested size: 422.77664pt x 351.3378pt.
+
+
+[15 <../Output/monthly_volume_plot.pdf>]
+
+[16 <../Output/alk_event_plot_52.pdf>]
+<../Output/correlations.pdf, id=363, 520.46974pt x 708.01262pt>
+File: ../Output/correlations.pdf Graphic file (type pdf)
+<use ../Output/correlations.pdf>
+Package pdftex.def Info: ../Output/correlations.pdf  used on input line 221.
+(pdftex.def)             Requested size: 281.85587pt x 383.43387pt.
+
+
+[17]
+<../Output/Correlation Matrices/Autocorrelations.pdf, id=373, 1084.05pt x 1445.4pt>
+File: ../Output/Correlation Matrices/Autocorrelations.pdf Graphic file (type pdf)
+<use ../Output/Correlation Matrices/Autocorrelations.pdf>
+Package pdftex.def Info: ../Output/Correlation Matrices/Autocorrelations.pdf  used on input line 230.
+(pdftex.def)             Requested size: 352.31625pt x 469.74944pt.
+
+
+[18 <../Output/correlations.pdf>]
+
+[19 <../Output/Correlation Matrices/Autocorrelations.pdf>] (../Output/r2_table_overall.tex
 Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
 )
 
-[15]
-<../Output/absolute_percent_error_distribution.pdf, id=291, 462.52798pt x 346.89601pt>
+[20]
+<../Output/absolute_percent_error_distribution.pdf, id=500, 462.52798pt x 346.89601pt>
 File: ../Output/absolute_percent_error_distribution.pdf Graphic file (type pdf)
 <use ../Output/absolute_percent_error_distribution.pdf>
-Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 244.
+Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 255.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
-[16]
-<../Output/mape_by_time.pdf, id=300, 462.52798pt x 346.89601pt>
+[21]
+<../Output/mape_by_time.pdf, id=508, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_time.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time.pdf>
-Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 252.
+Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 263.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
-[17 <../Output/absolute_percent_error_distribution.pdf>]
-<../Output/mape_by_time_by_ticker.pdf, id=339, 867.24pt x 1156.32pt>
+[22 <../Output/absolute_percent_error_distribution.pdf>]
+<../Output/mape_by_time_by_ticker.pdf, id=547, 867.24pt x 1156.32pt>
 File: ../Output/mape_by_time_by_ticker.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time_by_ticker.pdf>
-Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 261.
+Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 272.
 (pdftex.def)             Requested size: 352.31625pt x 469.75385pt.
 
 
-[18 <../Output/mape_by_time.pdf>]
-<../Output/mape_by_day_of_week.pdf, id=392, 462.52798pt x 346.89601pt>
+[23 <../Output/mape_by_time.pdf>]
+<../Output/mape_by_day_of_week.pdf, id=600, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_week.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_week.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 269.
+Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 280.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
-[19 <../Output/mape_by_time_by_ticker.pdf>]
-<../Output/mape_by_day_of_month.pdf, id=457, 462.52798pt x 346.89601pt>
+[24 <../Output/mape_by_time_by_ticker.pdf>]
+<../Output/mape_by_day_of_month.pdf, id=664, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_month.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_month.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 276.
+Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 287.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
-[20 <../Output/mape_by_day_of_week.pdf> <../Output/mape_by_day_of_month.pdf>]
-
-[21]
-
-[22]
-
-[23]
-
-[24]
-
-[25] (../Output/mape_table_overall.tex
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-)
+[25 <../Output/mape_by_day_of_week.pdf> <../Output/mape_by_day_of_month.pdf>]
 
 [26]
 
@@ -873,35 +891,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
 [29]
 
-[30]
+[30] (../Output/mape_table_overall.tex
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+
+ []
+
+)
 
 [31]
 
 [32]
 
-[33] (./main.aux)
+[33]
+
+[34]
+
+[35]
+
+[36]
+
+[37]
+
+[38] (./main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-06-09>
  ***********
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 0ED2A9D526783007AEA81F71C7D1B0B8;3591
-(rerunfilecheck)             After:  8B7B3B72C50986ACEEBD4B9EDD104A71;3591.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 8B7B3B72C50986ACEEBD4B9EDD104A71;3591.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22367 strings out of 467887
- 381601 string characters out of 5438214
- 1278810 words of memory out of 5000000
- 50499 multiletter control sequences out of 15000+600000
+ 22418 strings out of 467887
+ 383414 string characters out of 5438214
+ 1280030 words of memory out of 5000000
+ 50537 multiletter control sequences out of 15000+600000
  646639 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,1948b,1952s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -909,10 +935,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (33 pages, 417398 bytes).
+Output written on main.pdf (38 pages, 495076 bytes).
 PDF statistics:
- 752 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
- 127 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 964 PDF objects out of 1000 (max. 8388607)
+ 529 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 254 words of extra memory for PDF output out of 10000 (max. 10000000)
 

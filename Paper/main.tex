@@ -192,31 +192,42 @@ Each of these hyperparameters acts as a regularization term, preventing the mode
 
 \section{Results and Analysis}
 \subsection{Summary Analysis}
+A table summarizing the stock volume by ticker is shown below. Each ticker exhibits a wide range of trading volume, as indicated by the high coefficients of variation and kurtosis. There is also a wide range of volume across stocks. Three of the stocks (ALK, DAL, and LUV) have a minimum of zero volume, while AAL has a maximum of over 71 million shares traded in a 15-minute period. Further, the average volume traded varies from 5,685 (for ALGT) to 1,123,242 (for AAL).
+
+\input{../output/summary_volume.tex}
+
+Monthly total volume traded for each stock is shown in Figure \ref{fig:monthly_volume}. The figure shows that volume traded increased dramatatically during the COVID-19 pandemic. Most of the stocks continued to have a persistently higher volume traded post-COVID, with AAL showing the largest change.
+\begin{figure}[H]
+    \centering
+    \caption{Monthly Total Volume Traded by Airline Stock, Jan. 2018 - May 2025}
+    \includegraphics[width=0.7\linewidth]{../Output/monthly_volume_plot.pdf}
+    \label{fig:monthly_volume}
+\end{figure}
+
+As an example of the potential usefulness of the GDELT data, we plot the trading volume and some sentiment measures for Alaskan Airlines on the two trading days before and after Jan. 5, 2024, when the window of a Boeing 737-9 plane blew open in flight.\footnote{\url{https://news.alaskaair.com/emergency-response/as-1282/}, \url{https://www.npr.org/2024/01/06/1223280562/alaska-airlines-flight-emergency-landing-oregon}.} The event happened on a Friday evening after regular trading hours, and so the stock volume does not react until Monday morning, Jan. 8. We can see in the figure below that trading volume on Monday morning sees a large spike compared to the prior two trading days, and this coincides with a clear shift in tone and article count for articles mentioning Alaska Airlines.
+\begin{figure}[H]
+    \centering
+    \caption{Alaska Airlines Trading Volume and GDELT Sentiment Measures, Jan. 5, 2024}
+    \includegraphics[width=0.9\linewidth]{../Output/alk_event_plot_52.pdf}
+    \label{fig:alaska_volume_sentiment}
+\end{figure}
+
 \subsection{Correlation Analysis}
-I report the correlations among the lag of these variables. Figure \ref{fig:lagged_volume} reports correlations between a stock's volume at time $t$ (the rows) with a stock's volume at time $t-1$ (the columns). For example, the diagonal entries report the first-order autocorrelation of each stock.
+We can assess the usefulness of the GDELT sentiment measures on a broader scale by analyzing the correlation between stock volume and a 15-minute lag of some of the features. Figure \ref{fig:lagged_volume} reports a stock's current volume, price, and ``volume shock'' (change in volume compared to recent observations) in the columns, while each row is a selected sentiment measure from GDELT. Besides the typical sentiment measures, ``Oil Price'' and ``Earnings Report'' are word counts of articles mentioning the respective topic, and ``Sanctity (+) / Degradation (-)'' and ``Care (+) / Harm (-)'' are sentiment measures related to dimensions of morality.\footnote{According to \textcite{hopp2021extended}, the sanctity dimension measures moral disgust and spiritual concerns related to the body, while the care dimension involves intuitions of sympathy, compassion, and nurturance.} The results show that a higher article count, more polarity, and more positive \textit{or} negative words are all correlated with higher trading volume, but lower prices. The ``Oil Price'' and ``Earnings Report'' measures are also positively but weakly correlated with trading volume. The morality measures are negatively correlated with trading volume, i.e. when articles emphasize harm or moral disgust, trading volume tends to increase. The general reversal of correlations when looking at stock price is interesting. Finally, all correlations are much weaker when looking at changes in volume. This could suggest that prior trading volume absorbs much of the information reflected in the sentiment measures.
 
 \begin{figure}[H]
     \centering
-    \caption{Lagged Correlation, 15-Minute Lag of Trading Volume}
- %   \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume.png}
+    \caption{Correlation of Trading Volume/Price and Lagged Sentiment Measures}
+    \includegraphics[width=0.6\linewidth]{../Output/correlations.pdf}
     \label{fig:lagged_volume}
 \end{figure}
 
-Similarly, Figure \ref{fig:lagged_volume_day} reports volume correlations compared to the same time on the previous trading day.
-
-\begin{figure}[H]
-    \centering
-    \caption{Lagged Correlation, 1-Day Lag of Trading Volume}
-%    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume_Day.png}
-    \label{fig:lagged_volume_day}
-\end{figure}
-
-Stock volume is clearly autocorrelated. Rather than report volumes autocorrelations, Figure \ref{fig:autocorrelations} reports the autocorrelations of the change in 15-minute trading volume. 
+Figure \ref{fig:monthly_volume} above shows that stock volume is clearly autocorrelated. Rather than report volumes autocorrelations, Figure \ref{fig:autocorrelations} reports the autocorrelations of the change in 15-minute trading volume. 
 
 \begin{figure}[H]
     \centering
     \caption{Autocorrelations of Change in Trading Volume}
-%    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.png}
+    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.pdf}
     \label{fig:autocorrelations}
 \end{figure}
 
@@ -229,7 +240,7 @@ All models are evaluated using the out-of-sample $R^2$, described in the followi
 \begin{equation}
     R^2_{OOS} = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
 \end{equation}
-In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically }
+In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically assumed to be non-negative. OLS models with a constant are guaranteed to have a non-negative in-sample $R^2$.}
 
 \input{../output/r2_table_overall.tex}
 
