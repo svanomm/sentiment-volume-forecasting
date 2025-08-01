@@ -1,0 +1,12 @@
+Albugh, Quinn, Julie Sevenans and Stuart Soroka. (2013). 'Lexicoder Topic Dictionaries, June 2013 versions.' McGill University, Montreal, Canada.  Available at http://lexicoder.com/
+Andrea Esuli Stefano Baccianella and Fabrizio Sebastiani. (2010). 'Sentiwordnet 3.0: An enhanced lexical resource for sentiment analysis and opinion mining'. In LREC.
+Bernardo Magnini and Gabriela Cavaglia. (2000). 'Integrating Subject Field Codes into WordNet'. In Gavrilidou M., Crayannis G., Markantonatu S., Piperidis S. and Stainhaouer G. (Eds.) Proceedings of LREC-2000, Second International Conference on Language Resources and Evaluation, Athens, Greece, 31 May - 2 June, 2000, pp. 1413-1418.
+Correa, R. Garud, K. Londono, J, and Mislang, N. (2017). 'Sentiment in central bank's financial stability reports,' IFDP working paper series. Federal Reserve Board. Version 3/21/2017.
+Cruz, Fermin L., Jose A. Troyano, Beatriz Pontes, F. Javier Ortega. Building layered, multilingual sentiment lexicons at synset and lemma levels, Expert Systems with Applications, 2014
+Dodds PS, Harris KD, Kloumann IM, Bliss CA, Danforth CM (2011) Temporal Patterns of Happiness and Information in a Global Social Network: Hedonometrics and Twitter. PLoS ONE 6(12): e26752. doi:10.1371/journal.pone.0026752.
+Guerini M., Gatti L. & Turchi M. (2013). 'Sentiment Analysis: How to Derive Prior Polarities from SentiWordNet'. In Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing (EMNLP'13), pp 1259-1269. Seattle, Washington, USA.
+Hopp, F. R., Fisher, J. T., Cornell, D., Huskey, R., & Weber, R. (in press). The extended moral foundations dictionary (eMFD): Development and applications of a crowd-sourced approach to extracting moral intuitions from text. Behavior Research Methods. https://psyarxiv.com/924gq/ and https://osf.io/vw85e/
+Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+Kalev Hannes Leetaru. (2013).  'The GDELT Global Knowledge Graph (GKG)'.  Available http://gdeltproject.org/
+Lori Young and Stuart Soroka. (2012). 'Affective News: The Automated Coding of Sentiment in Political Texts'. Political Communication 29: 205-231.  Available at http://lexicoder.com/
+Tim Loughran and Bill McDonald. (2011). 'When is a Liability not a Liability?' Journal of Finance, V66, pp. 35-65.

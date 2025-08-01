@@ -11,12 +11,15 @@
 \contentsline {section}{\numberline {4}Results and Analysis}{14}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Summary Analysis}{14}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Correlation Analysis}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Models}{18}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Model Predictions}{18}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{23}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}VWAP Tracking Error}{25}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Discussion}{26}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sentiment}{26}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{26}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Suggestions for Further Work}{26}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Conclusion}{26}{section.6}%
+\contentsline {subsection}{\numberline {4.3}Models}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Model Predictions}{16}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{21}{subsubsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.5}VWAP Tracking Error}{22}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Discussion}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sentiment}{23}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{23}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Suggestions for Further Work}{23}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{23}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{26}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Model Performance}{26}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Sentiment Measures}{27}{subsection.7.2}%

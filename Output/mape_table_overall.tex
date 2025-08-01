@@ -1,0 +1,26 @@
+\begin{table}[H]
+\caption{
+{ Out-of-Sample MAPE, 15-Minute-Ahead Volume Prediction} \\
+{\small All Stocks, 2023-12-04 to 2025-05-30}
+} 
+
+\fontsize{12.0pt}{14.4pt}\selectfont
+
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
+\toprule
+Features & OLS & LASSO & Neural Network & LightGBM \\ 
+\midrule\addlinespace[2.5pt]
+Time Only & 18.048 & 18.049 & 18.407 & 18.015 \\
+Sentiment Only & 5.198 & 5.040 & 6.407 & 9.286 \\
+Self-Finance Only & 1.066 & 1.038 & 1.479 & 0.504 \\
+Finance Only & 2.173 & 1.870 & 1.262 & 0.534 \\
+Finance + Time & 2.123 & 1.878 & 1.011 & 0.527 \\
+All & 2.113 & 1.783 & 1.641 & 0.516 \\
+All (Tuned) &  &  &  & 0.566 \\
+All (Tuned, Retrained) &  &  &  & 0.515 \\
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Note: Models trained on data from 2018-01-02 to 2023-12-04.\\
+\end{minipage}
+\end{table}

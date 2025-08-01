@@ -5,10 +5,16 @@
 %\renewcommand{\thesubsection}{\quad \Alph{subsection}.}
 %\renewcommand{\thesubsubsection}{\qquad \roman{subsubsection}.}
 
-\usepackage{amssymb,amsmath,amsfonts,bbm,bm,dcolumn,booktabs,eurosym,geometry,ulem,graphicx,color,xcolor,setspace,sectsty,comment,float,caption,pdflscape,subfigure,array,hyperref}
+\usepackage{amssymb,amsmath,amsfonts,bbm,bm,dcolumn,booktabs,eurosym,geometry,ulem,graphicx,color,xcolor,setspace,sectsty,comment,float,caption,pdflscape,subfigure,array,hyperref,listings}
 \usepackage{xurl}
 \usepackage[font=bf]{caption}
 \usepackage[bottom]{footmisc}
+
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
 
 \hypersetup{
     colorlinks,
@@ -192,7 +198,7 @@ I report the correlations among the lag of these variables. Figure \ref{fig:lagg
 \begin{figure}[H]
     \centering
     \caption{Lagged Correlation, 15-Minute Lag of Trading Volume}
-    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume.png}
+ %   \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume.png}
     \label{fig:lagged_volume}
 \end{figure}
 
@@ -201,7 +207,7 @@ Similarly, Figure \ref{fig:lagged_volume_day} reports volume correlations compar
 \begin{figure}[H]
     \centering
     \caption{Lagged Correlation, 1-Day Lag of Trading Volume}
-    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume_Day.png}
+%    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Lagged_Volume_Day.png}
     \label{fig:lagged_volume_day}
 \end{figure}
 
@@ -210,7 +216,7 @@ Stock volume is clearly autocorrelated. Rather than report volumes autocorrelati
 \begin{figure}[H]
     \centering
     \caption{Autocorrelations of Change in Trading Volume}
-    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.png}
+%    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.png}
     \label{fig:autocorrelations}
 \end{figure}
 
@@ -231,7 +237,7 @@ First, we assess the model's out of sample performance on the validation and tes
 \begin{figure}[H]
     \centering
     \caption{Absolute Percent Error Distribution}
-    \includegraphics[width=0.75\linewidth]{../Output/absolute_percent_error_distribution.png}
+    \includegraphics[width=0.75\linewidth]{../Output/absolute_percent_error_distribution.pdf}
     \label{fig:absolute_percent_error_distribution}
 \end{figure}
 
@@ -239,7 +245,7 @@ Since stock volume can vary periodically, it is worth investigating the model's 
 \begin{figure}[H]
     \centering
     \caption{MAPE by Time of Day}
-    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time.png}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time.pdf}
     \label{fig:mape_by_time}
 \end{figure}
 The model is significantly worse at predicting volume in the first two periods of the trading day, which are highly volatile. The model is significantly better at predicting volume towards the end of the day; however, this is on a MAPE basis and so the results would differ on an absolute error basis (where end-of-day usually sees a spike in volume traded). Mid-day predictions are approximately of equal accuracy on average.
@@ -248,7 +254,7 @@ Figure \ref{fig:mape_by_time_by_ticker} breaks out the Figure above into individ
 \begin{figure}[H]
     \centering
     \caption{MAPE by Time of Day and Ticker}
-    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time_by_ticker.png}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_time_by_ticker.pdf}
     \label{fig:mape_by_time_by_ticker}
 \end{figure}
 
@@ -256,14 +262,14 @@ Next, we assess the model's performance by day of week and day of month. Figure 
 \begin{figure}[H]
     \centering
     \caption{MAPE by Day of Week}
-    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_week.png}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_week.pdf}
     \label{fig:mape_by_day_of_week}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \caption{MAPE by Day of Month}
-    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_month.png}
+    \includegraphics[width=0.75\linewidth]{../Output/mape_by_day_of_month.pdf}
     \label{fig:mape_by_day_of_month}
 \end{figure}
 
@@ -274,7 +280,7 @@ First, we report a plot that ranks all features by mean absolute Shapley value. 
 \begin{figure}[H]
     \centering
     \caption{Top 20 Features by Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.png}
+ %   \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.png}
     \label{fig:shapley_overall}
 \end{figure}
 
@@ -284,7 +290,7 @@ To further explore the sentiment features' contribution to the model, we report 
 \begin{figure}[H]
     \centering
     \caption{Top 10 Sentiment Variables by Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.png}
+ %   \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.png}
     \label{fig:shapley_sentiment}
 \end{figure}
 There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 22nd dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance.\footnote{We trained a LightGBM with all features except the LLM variables, and found an $R^2$ of 0.693, which is worse than simply not including the sentiment features.} Overall, it is clear that sentiment measures add very little to the model's predictions, since nearly all sentiment features individually are less than 1000.
@@ -314,4 +320,149 @@ The model results confirm that stock volume can be accurately forecasted better 
 
 \newpage
 \printbibliography
+
+\section{Appendix}
+\subsection{Model Performance}
+A table showing the MAPE for each model tested is shown below.
+\input{../output/mape_table_overall.tex}
+
+\subsection{Sentiment Measures}
+A complete list of the sentiment measures selected from GDELT's GKG is given below, along with their sources as reported by GDELT.\footnote{\url{http://data.gdeltproject.org/documentation/GCAM-MASTER-CODEBOOK.TXT}.}
+
+\footnotesize
+\begin{verbatim}
+c16.60, WORDCOUNT, WordNet Domains 3.2, finance
+c18.1, WORDCOUNT, GDELT GKG Themes, KILL
+c18.121, WORDCOUNT, GDELT GKG Themes, UNSAFE_WORK_ENVIRONMENT
+c18.137, WORDCOUNT, GDELT GKG Themes, TRIAL
+c18.154, WORDCOUNT, GDELT GKG Themes, ECON_MONOPOLY
+c18.157, WORDCOUNT, GDELT GKG Themes, AVIATION_INCIDENT
+c18.164, WORDCOUNT, GDELT GKG Themes, CORRUPTION
+c18.178, WORDCOUNT, GDELT GKG Themes, ECON_ENTREPRENEURSHIP
+c18.187, WORDCOUNT, GDELT GKG Themes, ECON_SUBSIDIES
+c18.188, WORDCOUNT, GDELT GKG Themes, ECON_DEREGULATION
+c18.189, WORDCOUNT, GDELT GKG Themes, ECON_NATIONALIZE
+c18.2, WORDCOUNT, GDELT GKG Themes, WOUND
+c18.21, WORDCOUNT, GDELT GKG Themes, LEGISLATION
+c18.213, WORDCOUNT, GDELT GKG Themes, ECON_TAXATION
+c18.214, WORDCOUNT, GDELT GKG Themes, ECON_REMITTANCE
+c18.215, WORDCOUNT, GDELT GKG Themes, ECON_INFORMAL_ECONOMY
+c18.223, WORDCOUNT, GDELT GKG Themes, ECON_DEBT
+c18.246, WORDCOUNT, GDELT GKG Themes, ECON_FREETRADE
+c18.247, WORDCOUNT, GDELT GKG Themes, ECON_FOREIGNINVEST
+c18.248, WORDCOUNT, GDELT GKG Themes, ECON_PRICECONTROL
+c18.254, WORDCOUNT, GDELT GKG Themes, ACT_MAKESTATEMENT
+c18.258, WORDCOUNT, GDELT GKG Themes, ECON_BOYCOTT
+c18.279, WORDCOUNT, GDELT GKG Themes, ECON_MOU
+c18.280, WORDCOUNT, GDELT GKG Themes, ECON_CUTOUTLOOK
+c18.286, WORDCOUNT, GDELT GKG Themes, ECON_BUBBLE
+c18.287, WORDCOUNT, GDELT GKG Themes, ECON_INFLATION
+c18.288, WORDCOUNT, GDELT GKG Themes, ECON_DEFLATION
+c18.289, WORDCOUNT, GDELT GKG Themes, ECON_UNDEREMPLOYMENT
+c18.290, WORDCOUNT, GDELT GKG Themes, ECON_IDENTITYTHEFT
+c18.292, WORDCOUNT, GDELT GKG Themes, ECON_MIDDLECLASS
+c18.293, WORDCOUNT, GDELT GKG Themes, ECON_WORKINGCLASS
+c18.294, WORDCOUNT, GDELT GKG Themes, ECON_EMERGINGECON
+c18.30, WORDCOUNT, GDELT GKG Themes, WHISTLEBLOWER
+c18.307, WORDCOUNT, GDELT GKG Themes, ECON_COUNTERFEITMONEY
+c18.314, WORDCOUNT, GDELT GKG Themes, ECON_OILPRICE
+c18.315, WORDCOUNT, GDELT GKG Themes, ECON_GOLDPRICE
+c18.316, WORDCOUNT, GDELT GKG Themes, ECON_GASOLINEPRICE
+c18.317, WORDCOUNT, GDELT GKG Themes, ECON_HEATINGOIL
+c18.318, WORDCOUNT, GDELT GKG Themes, ECON_HEATINGOILPRICE
+c18.319, WORDCOUNT, GDELT GKG Themes, ECON_DIESELPRICE
+c18.320, WORDCOUNT, GDELT GKG Themes, ECON_HEATINGOIL
+c18.321, WORDCOUNT, GDELT GKG Themes, ECON_PROPANE
+c18.323, WORDCOUNT, GDELT GKG Themes, ECON_ELECTRICALGENERATION
+c18.324, WORDCOUNT, GDELT GKG Themes, ECON_ELECTRICALGRID
+c18.325, WORDCOUNT, GDELT GKG Themes, ECON_ELECTRICALDEMAND
+c18.326, WORDCOUNT, GDELT GKG Themes, ECON_ELECTRICALLOADSHEDDING
+c18.327, WORDCOUNT, GDELT GKG Themes, ECON_ELECTRICALPRICE
+c18.328, WORDCOUNT, GDELT GKG Themes, ECON_NEWPOWERPLANT
+c18.329, WORDCOUNT, GDELT GKG Themes, ECON_NATGASPRICE
+c18.33, WORDCOUNT, GDELT GKG Themes, DELAY
+c18.332, WORDCOUNT, GDELT GKG Themes, ECON_PRICEGOUGE
+c18.336, WORDCOUNT, GDELT GKG Themes, ECON_MONEYLAUNDERING
+c18.337, WORDCOUNT, GDELT GKG Themes, ECON_BITCOIN
+c18.340, WORDCOUNT, GDELT GKG Themes, ECON_FOREIGNBANKS
+c18.341, WORDCOUNT, GDELT GKG Themes, ECON_WORLDCURRENCIES
+c18.355, WORDCOUNT, GDELT GKG Themes, ECON_CENTRALBANK
+c18.36, WORDCOUNT, GDELT GKG Themes, ECON_DEVELOPMENTORGS
+c18.42, WORDCOUNT, GDELT GKG Themes, ECON_COST_OF_LIVING
+c18.47, WORDCOUNT, GDELT GKG Themes, ECON_TRADE_DISPUTE
+c18.50, WORDCOUNT, GDELT GKG Themes, SHORTAGE
+c18.53, WORDCOUNT, GDELT GKG Themes, ECON_UNIONS
+c18.54, WORDCOUNT, GDELT GKG Themes, ECON_BANKRUPTCY
+c18.57, WORDCOUNT, GDELT GKG Themes, ECON_CURRENCY_RESERVES
+c18.58, WORDCOUNT, GDELT GKG Themes, ECON_CURRENCY_EXCHANGE_RATE
+c18.59, WORDCOUNT, GDELT GKG Themes, ECON_STOCKMARKET
+c18.60, WORDCOUNT, GDELT GKG Themes, ECON_EARNINGSREPORT
+c18.61, WORDCOUNT, GDELT GKG Themes, ECON_IPO
+c18.62, WORDCOUNT, GDELT GKG Themes, ECON_HOUSING_PRICES
+c18.63, WORDCOUNT, GDELT GKG Themes, ECON_INTEREST_RATES
+c18.66, WORDCOUNT, GDELT GKG Themes, STRIKE
+c18.68, WORDCOUNT, GDELT GKG Themes, FUELPRICES
+c18.83, WORDCOUNT, GDELT GKG Themes, EVACUATION
+c3.1, WORDCOUNT, Lexicoder Sentiment Dictionary, NEGATIVE
+c3.2, WORDCOUNT, Lexicoder Sentiment Dictionary, POSITIVE
+c3.3, WORDCOUNT, Lexicoder Sentiment Dictionary, NEG_NEGATIVE
+c3.4, WORDCOUNT, Lexicoder Sentiment Dictionary, NEG_POSITIVE
+c4.1, WORDCOUNT, Lexicoder Topic Dictionaries, MACROECONOMICS
+c4.16, WORDCOUNT, Lexicoder Topic Dictionaries, FINANCE
+c41.1, WORDCOUNT, Central Bank Financial Stability Report Sentiment, POSITIVE
+c6.1, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, Litigious
+c6.2, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, ModalStrong
+c6.3, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, ModalWeak
+c6.4, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, Negative
+c6.5, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, Positive
+c6.6, WORDCOUNT, Loughran and McDonald Financial Sentiment Dictionaries, Uncertainty
+v10.1, SCOREDVALUE, SentiWordNet 3.0, Positive (Scored Value)
+v10.2, SCOREDVALUE, SentiWordNet 3.0, Negative (Scored Value)
+v11.1, SCOREDVALUE, SentiWords, Polarity (Scored Value)
+v20.1, SCOREDVALUE, ML-SENTICON (English), Level1Positive (Scored Value)
+v20.10, SCOREDVALUE, ML-SENTICON (English), Level5Negative (Scored Value)
+v20.11, SCOREDVALUE, ML-SENTICON (English), Level6Positive (Scored Value)
+v20.12, SCOREDVALUE, ML-SENTICON (English), Level6Negative (Scored Value)
+v20.13, SCOREDVALUE, ML-SENTICON (English), Level7Positive (Scored Value)
+v20.14, SCOREDVALUE, ML-SENTICON (English), Level7Negative (Scored Value)
+v20.15, SCOREDVALUE, ML-SENTICON (English), Level8Positive (Scored Value)
+v20.16, SCOREDVALUE, ML-SENTICON (English), Level8Negative (Scored Value)
+v20.2, SCOREDVALUE, ML-SENTICON (English), Level1Negative (Scored Value)
+v20.3, SCOREDVALUE, ML-SENTICON (English), Level2Positive (Scored Value)
+v20.4, SCOREDVALUE, ML-SENTICON (English), Level2Negative (Scored Value)
+v20.5, SCOREDVALUE, ML-SENTICON (English), Level3Positive (Scored Value)
+v20.6, SCOREDVALUE, ML-SENTICON (English), Level3Negative (Scored Value)
+v20.7, SCOREDVALUE, ML-SENTICON (English), Level4Positive (Scored Value)
+v20.8, SCOREDVALUE, ML-SENTICON (English), Level4Negative (Scored Value)
+v20.9, SCOREDVALUE, ML-SENTICON (English), Level5Positive (Scored Value)
+v21.1, SCOREDVALUE, Hedonometer (English), Happiness (Scored Value)
+v26.1, SCOREDVALUE, VADER Sentiment Lexicon (Bag of Words Mode), Valence (Scored Value)
+v42.10, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), authority_sent
+v42.11, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), sanctity_sent
+v42.2, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), care_p
+v42.3, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), fairness_p
+v42.4, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), loyalty_p
+v42.5, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), authority_p
+v42.6, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), sanctity_p
+v42.7, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), care_sent
+v42.8, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), fairness_sent
+v42.9, SCOREDVALUE, Extended Moral Foundations Dictionary (eMFD), loyalty_sent
+\end{verbatim}
+
+\footnotesize
+\begin{lstlisting}
+Albugh, Quinn, Julie Sevenans and Stuart Soroka. (2013). 'Lexicoder Topic Dictionaries, June 2013 versions.' McGill University, Montreal, Canada.  Available at http://lexicoder.com/
+Andrea Esuli Stefano Baccianella and Fabrizio Sebastiani. (2010). 'Sentiwordnet 3.0: An enhanced lexical resource for sentiment analysis and opinion mining'. In LREC.
+Bernardo Magnini and Gabriela Cavaglia. (2000). 'Integrating Subject Field Codes into WordNet'. In Gavrilidou M., Crayannis G., Markantonatu S., Piperidis S. and Stainhaouer G. (Eds.) Proceedings of LREC-2000, Second International Conference on Language Resources and Evaluation, Athens, Greece, 31 May - 2 June, 2000, pp. 1413-1418.
+Correa, R. Garud, K. Londono, J, and Mislang, N. (2017). 'Sentiment in central bank's financial stability reports,' IFDP working paper series. Federal Reserve Board. Version 3/21/2017.
+Cruz, Fermin L., Jose A. Troyano, Beatriz Pontes, F. Javier Ortega. Building layered, multilingual sentiment lexicons at synset and lemma levels, Expert Systems with Applications, 2014
+Dodds PS, Harris KD, Kloumann IM, Bliss CA, Danforth CM (2011) Temporal Patterns of Happiness and Information in a Global Social Network: Hedonometrics and Twitter. PLoS ONE 6(12): e26752. doi:10.1371/journal.pone.0026752.
+Guerini M., Gatti L. & Turchi M. (2013). 'Sentiment Analysis: How to Derive Prior Polarities from SentiWordNet'. In Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing (EMNLP'13), pp 1259-1269. Seattle, Washington, USA.
+Hopp, F. R., Fisher, J. T., Cornell, D., Huskey, R., & Weber, R. (in press). The extended moral foundations dictionary (eMFD): Development and applications of a crowd-sourced approach to extracting moral intuitions from text. Behavior Research Methods. https://psyarxiv.com/924gq/ and https://osf.io/vw85e/
+Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+Kalev Hannes Leetaru. (2013).  'The GDELT Global Knowledge Graph (GKG)'.  Available http://gdeltproject.org/
+Lori Young and Stuart Soroka. (2012). 'Affective News: The Automated Coding of Sentiment in Political Texts'. Political Communication 29: 205-231.  Available at http://lexicoder.com/
+Tim Loughran and Bill McDonald. (2011). 'When is a Liability not a Liability?' Journal of Finance, V66, pp. 35-65.
+\end{lstlisting}
+
 \end{document}
