@@ -22,3 +22,5 @@ with open('./output/gdelt_metrics_used.txt', 'w') as f:
 with open('./output/gdelt_metrics_sources.txt', 'w') as f:
     for i in sorted(codebook['DictionaryCitation'].unique().tolist()):
         f.write(i + '\n')
+
+codebook.to_csv('./output/gdelt_metrics_codebook.csv', index=False)

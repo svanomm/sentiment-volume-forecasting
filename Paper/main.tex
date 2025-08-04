@@ -24,6 +24,7 @@ breaklines=true
 }
 \normalem
 \interfootnotelinepenalty=10000
+\setcounter{tocdepth}{2}
 
 \geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
 \usepackage[style=authoryear,backend=bibtex,maxcitenames=2]{biblatex}
@@ -46,26 +47,43 @@ breaklines=true
 \section{Introduction}
 The commercial airline industry is somewhat unique in that information about adverse events streams nearly 24/7/365, is highly publicized, and has potential to dramatically affect public trust in the company. In today's digital world, news of a fatal plane crash typically appears online within an hour. Knowledge of a plane crash or other adverse event could significantly impact the airline's stock, either because the event reveals additional information to the public or because traders think that the event will matter. In addition, the general lack of after-hours trading for U.S. commercial airline stock allows real-time news sentiment to anticipate stock market movements.
 
-I examine the impact of such events on airline stock prices at the near-real-time level. Specifically, I leverage data from the Global Database of Events, Language, and Tone (GDELT) (\textcite{leetaru2013gdelt}) to scrape a rich set of sentiment measures from 1.3 million news articles mentioning the major U.S. commercial airlines. I use these (and other) data to predict changes in stock volumes for 7 major U.S. airlines in 15-minute increments during the trading days from January 2018 to May 2025.
+We examine the impact of such events on airline stock prices at the near-real-time level. Specifically, we leverage data from the Global Database of Events, Language, and Tone (GDELT) (\textcite{leetaru2013gdelt}) to scrape a rich set of sentiment measures from 1.3 million news articles mentioning the major U.S. commercial airlines. We additionally use a large language model to encode additional sentiment from the headline of the GDELT articles. We use these (and other) data to predict intraday trading volumes for 7 major U.S. airline stocks in 15-minute increments during the trading days from January 2018 to May 2025.
 
-This paper appears to be the first to publicly examine such a large volume of real-time GDELT data, the first to examine the effects of news sentiment on stock prices at a sub-daily level in the airline industry, and the first to consider the large set of supplemental sentiment indicators offered by GDELT for stock prediction. All of my code used to scrape and examine GDELT is available free and open-source, and can be used for business monitoring going forward.
+This paper appears to be the first to publicly examine such a large volume of real-time GDELT data, the first to examine the effects of news sentiment on stock volumes at a sub-daily level in the airline industry, the first to consider the large set of supplemental sentiment indicators offered by GDELT for stock prediction. All of our code used to scrape and examine GDELT is available free and open-source, and can be used for business monitoring going forward. The focus of this paper is on the problem of forecasting trading volume; we leave an assessment the actual profitability of our models to future work.
+
+The rest of this paper is as follows: the following section reviews the relevant literature on stock volume prediction, sentiment analysis, and the use of GDELT data. Section \ref{section:methods} describes the data preparation and modeling techniques used in this paper. Section \ref{section:results} presents the results of our models and other analyses. Section \ref{section:discussion} discusses the implications of our findings and their relation to the existing literature. Section \ref{section:conclusion} concludes.
 
 \section{Literature Review}
+\label{section:litreview}
 
 \subsection{Stock Volume Prediction}
-The fact that most traders are concerned with predicting stock prices makes stock prices nearly impossible to predict. [[Efficient market hypothesis]]. [[once the market adapts to a better model, you can't predict prices anymore]]. Trading volumes do not provide direct price information, and so they are not subject to the same competition as with prices. As a result, trading volume is highly predictable with the right model, and the literature shows that accurate volume forecasts can be valuable to institutional traders by reducing the effective cost of trading.
+The fact that most traders are concerned with predicting stock prices makes stock prices nearly impossible to predict. One consequence of a relatively efficient stock market is that, if a trader discovers an exploitable pattern, the act of trading on that pattern will eventually eliminate its profitability, an idea that \textcite{timmermann2004efficient} call the ``self-destruction of predictability.'' Trading volumes do not provide direct price information, and so they are not subject to the same competition as with prices. As a result, trading volume is highly predictable with the right model, and the literature shows that accurate volume forecasts can provide indirect value to institutional traders by reducing the effective cost of trading.
 
-\textcite{goyenko2024trading} model the potential benefits associated with accurate predictions of trading volume. The authors explain that while trading volume is not particularly useful to a day trader, inaccurate forecasts of volume could lead a large trading firm to miscalculate the price impact of a trade. In the authors' theoretical model, overestimating the amount of trading volume when making a large trade would increase the net trading cost to the firm. Specifically, price impact is assumed to be proportional to the trade's share of total volume:
+\textcite{goyenko2024trading} model the potential benefits associated with accurate predictions of trading volume. The authors explain that while trading volume is not particularly useful to a day trader, inaccurate forecasts of volume could lead a large trading firm to miscalculate the price impact of a trade. In the authors' theoretical model, overestimating the amount of trading volume when making a large trade increases the net trading cost to the firm. Specifically, price impact is assumed to be proportional to the trade's share of total volume:
 \begin{equation}
     |Price Impact_{t}| = \alpha\frac{v_{t}}{V_{t}}, \qquad 0< \alpha < 1,
 \end{equation}
-where $v_{t}$ is the volume of a given trade, and $V_{t}$ is the total volume of all trades at time $t$. The result is that buying (or selling) a large proportion of total volume makes the trade more costly, because price is higher (or lower) than it would be otherwise. The authors create a predictive model of changes in the log of dollar trading volume using technical indicators for 4700 stocks over a period of 1258 days. Their best model (an LSTM with 175 features) obtains an $R^2$ of around 20\% relative to the prediction accuracy of a moving average model. This demonstrates that, unlike stock price prediction, models can consistently predict daily trading volumes over a wide range of stocks.
+where $v_{t}$ is the volume of a given trade, and $V_{t}$ is the total volume of all trades at time $t$. The result is that buying (or selling) a large proportion of total volume makes the trade more costly, because price is higher (or lower) than it would be otherwise. The authors create a predictive model of changes in the log of dollar trading volume using technical indicators for 4700 stocks over a period of 1258 days. Their best model (an LSTM with 175 features) obtains an $R^2$ of around 20\% relative to the prediction accuracy of a moving average model. This demonstrates that, unlike stock price prediction, models can consistently predict daily trading volumes over a wide range of stocks. The authors then translate their volume predictions into simulated trading strategies, finding a significant net-of-cost return.
 
 \textcite{cucuringu2025forecasting} investigate the ability of machine learning models to predict intraday trading volumes. The authors analyze 15-minute data over a period of 6 months for each constituent stock in the S\&P 500 index. A baseline model is able to predict out-of-sample volumes with an $R^2$ of 0.265, while their best model attains an $R^2$ of 0.624. The authors then demonstrate the usefulness of their model for large traders seeking to minimize the price impact of a trade. Their model improves the volume-weighted average price (VWAP) order execution risk for a sample of 5 stocks by an average of around 29\%, compared to a baseline model.
 
 \textcite{satish2014predicting} make the case for using a statistical model to predict trading volumes. The authors explain that at the time,  the typical approach taken by firms was to just use moving averages of trading volumes as a predictor. The authors combine two ARMA models with varying levels of historical data (intraday and daily) to predict trading volume. After calibrating their model, the authors were able to increase VWAP error performance by 9\% compared to the typical moving average approach. Notably, the authors explain that news events can affect VWAP tracking error, though they do not include news sentiment in their model.
+
+\subsection{Sentiment Analysis}
+Sentiment analysis can generally be defined as the extraction of meaningful (and preferably quantifiable) information from a piece of text. A full review of the applications of sentiment analysis is far beyond the scope of this paper.\footnote{For further reading, see \textcite{mejova2009sentiment} and \textcite{wankhade2022survey}.} However, we discuss some usecases of sentiment analysis as they relate to our paper, which is extracting information content from news articles for forecasting purposes.
+
+We provide a basic motivation for the use of financial sentiment analysis.\footnote{Additional motivation with a more economic-theoretic underpinning can be found in \textcite{kaplanski2010sentiment}.} A company's perceived value can change over time when events reveal additional information about the company to the public. For example, an unexpected natural disaster could destroy some of the company's assets, devaluing its business. Another example would be a company's product experiencing sudden failure (e.g. a plane malfunction), which reveals additional information about the quality of the company's products. In both cases, even if a person's perception of the company remains unchanged, they may believe that other people have changed their perception of the company. As a result, we can expect an increased trading volume of the company's stock, as people adjust their holdings to align with their new beliefs about the company. People find out about such events by reading news articles, and so it is natural to extract sentiment from popular news articles to anticipate how relevant events will be perceived by the public. 
+
+There are many ways to evaluate the sentiment of a piece of text. The most basic and common approach is to classify text as having a positive (i.e. good) or negative (bad) sentiment, also called ``tone.'' Another basic and commonly-seen sentiment measure is to count the number of words or articles discussing a particular topic. In the context of news articles, a spike in the number of articles mentioning an airline company likely indicates that something important has happened, which could affect its stock. While basic measures often capture a large portion of the sentiment from a news article, there are many ways to measure positive/negative tone, as well as more nuanced dimensions of sentiment. Additional basic measures include: counting the number of positive/negative-sentiment words in the text, or assessing the relation of positive to negative words (i.e. polarity or dispersion).
+
+\textcite{kaplanski2010sentiment} study the effects of aviation disasters on the overall stock market. While a large-scale aviation disaster would expectedly affect aviation stocks, the authors hypothesize that the overall stock market could also be affected by a general sense of anxiety or increased aversion to risk. Analyzing the excess market returns surrounding 288 aviation disasters over a period of 58 years, the authors show that the first day following a plane crash sees decreased rates of return in the market, with the abnormal returns recovering over a period of about 2 weeks. The market-wide decrease results in losses that are on average over 60 times larger than the direct economic loss of the disaster itself. The authors interpret these results as evidence of the psychological effect of anxiety-inducing media coverage.
+
+\textcite{loughran2011liability} analyze SEC filings to identify words that indicate financial sentiment for businesses. The authors identify various sentiment dimensions of interest: positive (i.e. good news), negative, uncertainty, litigiousness, and strong/weak modalities. After identifying words that fit into these dimensions, one can assess the sentiment of a financial form by counting how often the words appear in the text. The major contribution of this work is in recognizing that sentiment measures should be specific to the domain of interest, and in providing measures that identify financial sentiment in particular.
+
+While sentiment analysis has historically relied on identifying specific words and counting their occurrences in a document, recent advances in machine learning have allowed for more sophisticated approaches. Large language models (LLMs) encode text into a high-dimensional vector space to capture more complex relationships between words in an article. LLMs have become a popular addition to sentiment analysis. \textcite{huang2023finbert} introduce FinBERT, a large language model specifically designed for extracting information from financial text. The authors trained an existing LLM architecture on financial filings, analyst reports, and earnings call transcripts, with the goal of predicting positive/negative sentiment of the document. They find that FinBERT outperforms more traditional sentiment measures.
+
 \subsection{GDELT}
-Previous studies have assessed the usefulness of GDELT for predicting stock prices. However, apparently all of them have aggregated GDELT to a daily level, rather than using it at its original real-time 15-minute increments. To my knowledge, only one study has taken advantage of the GDELT sentiment measures outside of the basic metrics of tone, count of articles, and number of positive/negative sentiment words for predicting financial markets.
+Previous studies have assessed the usefulness of GDELT for predicting stock prices. However, apparently all of them have aggregated GDELT to a daily level, rather than using it at its original real-time 15-minute increments. To our knowledge, only one study has taken advantage of the GDELT sentiment measures outside of the basic metrics of tone, count of articles, and number of positive/negative sentiment words for predicting financial markets.
 
 \textcite{nashir2023indonesian} incorporate GDELT data into a machine learning model to predict stock prices. The authors source a long span of daily stock data from Jan. 2008 to Dec. 2022 (5479 observations), specifically for the Jakarta Stock Exchange (JKSE) index of Indonesian stocks. The authors study 4 sentiment measures using GDELT data: tone, optimism, attention, and tone dispersion. These metrics are calculated at the daily level. The authors then train a modified version of an LSTM model using time series cross-validation. The authors document an extensive hyperparameter optimization, which yielded an improved model with a mean absolute percentage error (MAPE) of 0.8\%. They additionally find that a model trained with only the ``optimism" feature slightly outperforms the model with all four sentiment measures.\footnote{The combined model outperforms the other models that include only a single sentiment metric (tone, attention, or tone dispersion).} The authors do not compare their results to a Naive forecast.
 
@@ -75,55 +93,14 @@ Previous studies have assessed the usefulness of GDELT for predicting stock pric
 
 \textcite{jakel2019using} investigates correlations between GDELT sentiment and the stock prices of U.S. technology companies. The author sourced approximately 60,000 articles over a 29-day period in 2019. He then averaged the sentiment tone by company and day to join to 29 days of stock price data for Facebook, Apple, Amazon, Alphabet and Tesla. Analyzing the correlation between sentiment and stock price, the author found a generally contrarian relationship. However, the results are inconclusive due to a small sample size.
 
-\textcite{alamro2019predicting} use GDELT's Tone and count of articles per day to predict TASI, a Saudi stock market index. The authors filtered GDELT data to any articles that mention Saudi Arabia, then aggregate the data to the daily level, averaging the Tone metric and counting the number of articles per day. The authors then test a variety of models to predict the index price, finding that an LSTM model performs dramatically better than more traditional forecasting models. Unfortunately, the authors do not report the specification of the LSTM model, any scale-independent measures of model fit, any comparisons to a Naive forecast, any tests of whether the sentiment measures add predictive value, nor any graphs of predicted vs actual stock prices. It is therefore unclear whether the authors' LSTM model provides better-than-Naive performance or if the sentiment measures actually improved the fit of the model.
+\textcite{alamro2019predicting} use GDELT's Tone and count of articles per day to predict TASI, a Saudi stock market index. The authors filtered GDELT data to any articles that mention Saudi Arabia, then aggregate the data to the daily level, averaging the Tone metric and counting the number of articles per day. The authors then test a variety of models to predict the index price, finding that an LSTM model performs dramatically better than more traditional forecasting models.\footnote{Unfortunately, the authors do not report the specification of the LSTM model, any scale-independent measures of model fit, any comparisons to a Naive forecast, any tests of whether the sentiment measures add predictive value, nor any graphs of predicted vs actual stock prices. It is therefore unclear whether the authors' LSTM model provides better-than-Naive performance or if the sentiment measures actually improved the fit of the model.}
 
 \section{Methods}
-Below, we explain the data preparation and modelling techniques used to evaluate the usefulness of GDELT for predicting airline stock volume.\footnote{All processing and modelling was performed on a Windows 10 desktop with the following specifications: 128GB of DDR4 RAM, an Nvidia RTX 2070 Super (8GB VRAM), and an AMD Ryzen 5 3600 processor.}
+\label{section:methods}
+
+Below, we explain the data preparation and modelling techniques used to evaluate the usefulness of news sentiment for predicting airline stock volume.\footnote{All processing and modelling was performed on a Windows 10 desktop with the following specifications: 128GB of DDR4 RAM, an Nvidia RTX 2070 Super (8GB VRAM), and an AMD Ryzen 5 3600 processor.} The resulting dataset has a row for each stock ticker and 15-minute trading period, and columns for the various financial and sentiment features. The models are trained to predict 15-minute-ahead trading volume for each airline stock.
+
 \subsection{Data Preparation}
-\subsubsection{GDELT}
-GDELT offers a variety of databases to the public. For this analysis, we use the Global Knowledge Graph version 2 (GKG). For each article identified by GDELT, the GKG reports:
-\begin{itemize}
-\singlespacing
-    \item the date scraped by GDELT (at the 15-minute level)
-    \item the article URL (or other unique identifier)
-    \item every location, business, and important person named in the article text
-    \item Conflict and Mediation Event Observations (CAMEO) codes identified in the article
-    \item 7 sentiment measures based on the article text (Tone, Positive Score, Negative Score, Polarity, Activity Reference Density, Self/Group Reference Density, Word Count). These are called the GKG1 sentiment measures
-    \item 111 additional sentiment measures that use a scored value (called the GKG2 scored measures)
-    \item 2878 additional sentiment measures that use word count (called the GKG2 word count measures)
-    \item the article headline text (if available).\footnote{GDELT only started scraping the article headline in Sep. 2019. Prior to this time, we recover part of the article headline using the URL, which often contains a relevant description of the story.}
-\end{itemize}
-Importantly, GDELT does \textit{not} store the article text itself. GDELT uploads the raw GKG data in separate files every 15 minutes. These files are available to download for free, but the full combined data is available to query in Google BigQuery for a fee. The files are saved at the article level, i.e. the articles that GDELT scraped in a given 15-minute period.
-
-Because the combined data is several tens of terabytes (TBs), we did not have the storage capacity to save all the raw data. Instead, we filtered the raw files to articles matching the airline industry before saving the data. The general outline of our data processing is:
-\begin{itemize}
-\singlespacing
-    \item access and unzip the raw file for a given 15-minute period
-    \item keep a limited subset of columns from the raw file
-    \item limit to articles mentioning a location of ``United States"
-    \item limit to articles that mention at least one of the following organizations: Alaska Airlines, American Airlines, Delta Air Lines, Frontier Airlines, Hawaiian Airlines, JetBlue, Southwest Airlines, Spirit Airlines, Sun Country Airlines, United Airlines, Allegiant Air
-    \item drop articles that are missing any key fields
-\end{itemize}
-We repeated this process for the approximately 260,000 15-minute periods covering the timeline of 1/1/2018 00:00:00 to 5/30/2025 23:45:00. Data downloading was performed over multiple several-hour periods, and was parallelized to increase download speeds. After filtering, 218,574 raw GDELT files were combined for a total of 1,261,785 articles identified.\footnote{The total raw GDELT files kept is less than the theoretical 260,000 files for multiple reasons, including: no airlines mentioned in the past 15 minutes, and sporadic GDELT outages.}
-
-Next, we performed extensive data cleaning to filter the articles to those that would likely affect the stock market:
-\begin{itemize}
-\singlespacing
-    \item restricting the sentiment indicators to finance- and economics-specific measures
-    \item removing frequent article titles that relate to the front page of a news site (rather than a specific article) or an unrelated article
-    \item restricting to top news websites (e.g. MSN, Reuters) and finance-related websites (e.g. Investors.com)
-    \item removing discussions of historical airline events (such as the September 11 attacks)
-    \item removing articles that did not have a valid article title after data processing
-    \item removing a small set of duplicate articles\footnote{Duplicate articles are likely due to the data downloading process, which was stopped and restarted multiple times.}
-\end{itemize}
-After cleaning and filtering, we have 121,655 relevant articles and 118 sentiment measures.
-
-To extract additional sentiment from the GDELT data, we use a \textbf{Large Language Model} (LLM) to embed the article titles in a high-dimensional vector space. We apply a 596-million parameter embedding model to each article title.\footnote{\url{https://huggingface.co/Qwen/Qwen3-Embedding-0.6B}. This embedding model optionally takes an instruction prompt as an input. We use the following prompt for our embeddings: \textsf{Instruct: Extract the sentiment from this news headline that is most likely to affect the airline stock market. Query:}.} The model is trained to output 1024-dimensional vectors, however we use the Matryoshka Transformer (MatFormer) method to truncate the vectors to 32 dimensions, acting as a dimensionality reduction technique. These 32 dimensions are then used as additional sentiment measures in the model.
-
-After constructing the sentiment measures, we aggregate the data to align with stock market data and to identify sentiment scores separately by airline. Each metric is interacted with a set of indicator variables identifying the airline companies.\footnote{Multiple airlines can be mentioned in the same article, in which case the article is included each of the airlines' interacted sentiment values.} We then sum the metrics by 15-minute interval and fill in missing time periods with zeroes.\footnote{GDELT data is recorded in the UTC timezone, while my stock data is in EST. I converted the timezone before merging these datasets.} At this point, the GDELT data is in 15-minute intervals, but it includes times outside of market open. We further aggregate the data to align with market open. The choice of aggregation strategy is not obvious here. The number of observations to aggregate influences the scale of the resulting sentiment scores. Summing a particular window of observations (e.g. 2 hours) assumes that sufficient information is captured in that time period for predicting stock behavior.\footnote{Note that simply collapsing all of the market close data into one observation would result in large sentiment values at market open, and small values for the rest of the trading day. This would essentially vanish any effects of events that occur during the trading day.} We address this issue by calculating rolling sums over varying time windows: 1 hour, 4 hours, 12 hours, and 24 hours. These sums influence the non-after-hours observations as well, making them essentially moving averages. Each of these rolling sums is included in the feature set to allow the model to identify combinations of windows that best fit the data.
-
-After calculating the rolling sums for each airline, metric, and window, we calculate the first lag of each variable to ensure that they can be used for out-of-sample predictions. Finally, the data is reshaped so that each observation is a 15-minute-bin and stock ticker. The final data has 338,324 rows and 750 sentiment features.
-
 \subsubsection{Stocks}
 Stock data were downloaded in 15-minute increments during market open from Barchart, for the period Jan. 2018 to May 2025. The following tickers were downloaded:
 \begin{itemize}
@@ -140,23 +117,36 @@ Stock data were downloaded in 15-minute increments during market open from Barch
     \item IYT: iShares US Transportation ETF
     \item JETS: US Global Jets ETF
 \end{itemize}
-As seen from the list, we include some stocks as control variables that are likely correlated with airline stocks: 3 airplane-related ETFs, and an oil fund. The raw data include the stock's open, high, low, and last price, and volume traded over each 15-minute period. We calculate additional features for each stock:
+As seen from the list, we include some stocks as control variables that are likely correlated with airline stocks: 3 airplane-related ETFs, and an oil fund.\footnote{Fuel is a major input cost for airlines, and so changes in oil prices can significantly impact airline stocks.} The raw data include the stock's open, high, low, and last price, and volume traded over each 15-minute period. We calculate additional features for each stock:
 \begin{itemize}
 \singlespacing
-    \item High-Low spread (in levels and percentage)
-    \item Last-Open spread (in levels and percentage)
+    \item High-Low spreads
+    \item Last-Open spread
     \item 1-period change in open, high, low, last price, and volume
     \item Change in trading volume compared to same time on previous trading day (10 lags)
     \item 10-period rolling standard deviation of last price
     \item 10-period rolling standard deviation of volume
-    \item 10-period rolling standard deviation of the 10-period SD of price
-    \item 10-period rolling standard deviation of the 10-period SD of volume
 \end{itemize}
-The last 4 measures are meant to capture changes in volatility for a given stock.
+The last 2 measures are meant to capture changes in volatility for a given stock.
 
-We then calculate a variety of moving averages for each metric, with the following windows: 4 periods (1 hour), 8 periods (2 hours), 16 periods (4 hours), and 26 periods (one trading day). For price, volume, change in price, and change in volume, we also calculate 26 periods of 15-minute lags. The data is reshaped so that each observation is a 15-minute bin and stock ticker (for the 7 airline stocks). The features include the stock's own set of features (self-finance), as well as the features of the ETFs and oil fund. The final data has 337,795 rows and 800 lagged features for prediction.
+We then calculate a variety of moving averages for each metric, with the following windows: 4 periods (1 hour), 8 periods (2 hours), 16 periods (4 hours), and 26 periods (one trading day). For price, volume, change in price, and change in volume, we also calculate 26 periods of 15-minute lags. The data is reshaped so that each observation is a 15-minute bin and stock ticker (for the 7 airline stocks). The features include the stock's own characteristics, as well as the ETFs and oil fund. The final data has 337,795 rows and 800 lagged features for prediction.
 
-The GDELT and stock data are merged by 15-minute bin and stock ticker. As a final step, we create indicator variables for each hour of day, day of week, and month of year, as well as indicators for market open and market close. These indicators are meant to capture multilevel seasonality common across the stocks.
+We also create indicator variables for each hour of day, day of week, and month of year, as well as indicators for market open and market close. These indicators are meant to capture multilevel seasonality common across the stocks.
+
+\subsubsection{GDELT}
+GDELT scrapes news articles from around the world in near-real-time, and provides a rich set of sentiment measures for each article. The data we use is uploaded by GDELT in files every 15 minutes. Each file contains all of the articles that GDELT scraped in a given 15-minute period. We began by programatically downloading files for the approximately 260,000 15-minute periods covering the timeline of 1/1/2018 00:00:00 to 5/30/2025 23:45:00.\footnote{Additional details of our data processing can be found in the Appendix, Section \ref{section:gdelt_details}.} Because we are interested in articles concerning the major U.S. airline stocks, we dynamically filtered the GDELT data during the downloading process. After filtering, 218,574 raw GDELT files were combined for a total of 1,261,785 articles identified.\footnote{The total raw GDELT files kept is less than the theoretical 260,000 files for multiple reasons, including: no airlines mentioned in the past 15 minutes, and sporadic GDELT outages.} We then performed extensive additional cleaning to filter the articles and sentiment measures to those that would likely affect the stock market. After cleaning and filtering, we have 121,655 relevant articles and 118 sentiment measures.
+
+We describe some of the sentiment measures used here, leaving a complete list of the measures for the Appendix, Section \ref{section:gdelt_details}. First is the article's tone, which captures general positive/negative sentiment. We use article count as a proxy for overall attention to the respective airline. 6 of the sentiment measures are finance-specific word counts from \textcite{loughran2011liability}, identifying positive, negative, uncertainty, litigiousness, strong modality, and weak modality words. We use general positive and negative scores from the SentiWordNet 3.0 database (\textcite{baccianella2010sentiwordnet}). The bulk of our sentiment measures count the number of times that specific business-related words are mentioned, such as ``debt," ``inflation," ``money laundering," and many other terms identified by GDELT.
+
+The GDELT data also include each article's headline or title, which we use to extract additional sentiment. Specifically, we use a large language model to embed the article titles in a high-dimensional vector space. Rather than encoding the headlines into a single tone dimension (as in \textcite{huang2023finbert}), we instead use a general-purpose language embedding model and retain 32 dimensions of the embedding space.\footnote{Our chosen model (Qwen3 Embedding 0.6B) embeds text into 1024 dimensions, but we limit to 32 dimensions as a computational constraint and as a form of dimensionality reduction. This model was chosen for its nearly top-ranked performance (at the time of writing) in embedding benchmarks and relatively small size.} These 32 dimensions are then used as additional sentiment measures in the model. Unlike the GDELT sentiment measures, these LLM dimensions have no specific meaning and are in some sense ``black box'' features. However, they may be useful for capturing textual nuances that are not captured by the GDELT measures.
+
+The data at this point is a collection of 121,655 articles with corresponding article-level sentiment measures. To align with the stock data, we need to aggregate the articles into 15-minute bins. Each sentiment measure is aggregated with rolling sums of varying time windows: 1 hour, 4 hours, 12 hours, and 24 hours. Each of these rolling sums is included in the feature set to allow the model to identify combinations of windows that best fit the data. Finally, the data is reshaped so that each observation is a 15-minute-bin and stock ticker. The final data has 750 sentiment features and is joined onto the stock data by time and stock ticker.
+
+\begin{figure}[H]
+\centering
+\caption{GDELT Data Processing Workflow}
+\includegraphics[width=0.8\textwidth]{../Output/GDELT Processing Diagram.pdf}
+\end{figure}
 
 \subsection{Modeling}
 
@@ -191,12 +181,13 @@ Hyperparameter tuning is the process of changing some of the input settings in t
 Each of these hyperparameters acts as a regularization term, preventing the model from overfitting to the training data. Optuna tuned the hyperparameters with the objective of maximizing the average out-of-sample $R^2$ on both the validation and testing sets. Tuning was run for approximately 6 hours, resulting in 65 trials. The best hyperparameters were then used to train the final model with a lower learning rate and more iterations. The final model was retrained with a lower learning rate of 0.005, 10000 iterations, and the best hyperparameters found by Optuna.
 
 \section{Results and Analysis}
+\label{section:results}
 \subsection{Summary Analysis}
-A table summarizing the stock volume by ticker is shown below. Each ticker exhibits a wide range of trading volume, as indicated by the high coefficients of variation and kurtosis. There is also a wide range of volume across stocks. Three of the stocks (ALK, DAL, and LUV) have a minimum of zero volume, while AAL has a maximum of over 71 million shares traded in a 15-minute period. Further, the average volume traded varies from 5,685 (for ALGT) to 1,123,242 (for AAL).
+A table summarizing the intraday stock volume by ticker is shown below. Each ticker exhibits a wide range of trading volume, as indicated by the high coefficients of variation and kurtosis. There is also a wide range of volume across stocks. Three of the stocks (ALK, DAL, and LUV) have a minimum of zero volume, while AAL has a maximum of over 71 million shares traded in a 15-minute period. Further, the average volume traded varies from 5,685 (for ALGT) to 1,123,242 (for AAL).
 
 \input{../output/summary_volume.tex}
 
-Monthly total volume traded for each stock is shown in Figure \ref{fig:monthly_volume}. The figure shows that volume traded increased dramatatically during the COVID-19 pandemic. Most of the stocks continued to have a persistently higher volume traded post-COVID, with AAL showing the largest change.
+Monthly total volume traded for each stock is shown in Figure \ref{fig:monthly_volume}. The figure shows that volume traded increased dramatically during the COVID-19 pandemic. Most of the stocks continued to have a persistently higher volume traded post-COVID, with AAL showing the largest change.\footnote{We considered removing the COVID-19 period from our training data, but ultimately included it to provide the models with the best opportunity to learn what we expected to be complex and noisy relationships with the sentiment measures.}
 \begin{figure}[H]
     \centering
     \caption{Monthly Total Volume Traded by Airline Stock, Jan. 2018 - May 2025}
@@ -213,7 +204,7 @@ As an example of the potential usefulness of the GDELT data, we plot the trading
 \end{figure}
 
 \subsection{Correlation Analysis}
-We can assess the usefulness of the GDELT sentiment measures on a broader scale by analyzing the correlation between stock volume and a 15-minute lag of some of the features. Figure \ref{fig:lagged_volume} reports a stock's current volume, price, and ``volume shock'' (change in volume compared to recent observations) in the columns, while each row is a selected sentiment measure from GDELT. Besides the typical sentiment measures, ``Oil Price'' and ``Earnings Report'' are word counts of articles mentioning the respective topic, and ``Sanctity (+) / Degradation (-)'' and ``Care (+) / Harm (-)'' are sentiment measures related to dimensions of morality.\footnote{According to \textcite{hopp2021extended}, the sanctity dimension measures moral disgust and spiritual concerns related to the body, while the care dimension involves intuitions of sympathy, compassion, and nurturance.} The results show that a higher article count, more polarity, and more positive \textit{or} negative words are all correlated with higher trading volume, but lower prices. The ``Oil Price'' and ``Earnings Report'' measures are also positively but weakly correlated with trading volume. The morality measures are negatively correlated with trading volume, i.e. when articles emphasize harm or moral disgust, trading volume tends to increase. The general reversal of correlations when looking at stock price is interesting. Finally, all correlations are much weaker when looking at changes in volume. This could suggest that prior trading volume absorbs much of the information reflected in the sentiment measures.
+We can assess the usefulness of the GDELT sentiment measures on a broader scale by analyzing the correlation between stock volume and a 15-minute lag of some of the features. Figure \ref{fig:lagged_volume} reports a stock's current volume, price, and ``volume shock'' (change in volume compared to recent observations) in the columns, while each row is a selected sentiment measure from GDELT.\footnote{Specifically, volume shock is the difference between current volume and the 4-period moving average (lagged by 1 period) of volume.} Besides the typical sentiment measures, ``Oil Price'' and ``Earnings Report'' are word counts of articles mentioning the respective topic, and ``Sanctity (+) / Degradation (-)'' and ``Care (+) / Harm (-)'' are sentiment measures related to dimensions of morality.\footnote{According to \textcite{hopp2021extended}, the sanctity dimension measures moral disgust and spiritual concerns related to the body, while the care dimension involves intuitions of sympathy, compassion, and nurturance.} The results show that a higher article count, more polarity, and more positive \textit{or} negative words are all correlated with higher trading volume, but lower prices. The ``Oil Price'' and ``Earnings Report'' measures are also positively but weakly correlated with trading volume. The morality measures are negatively correlated with trading volume, i.e. when articles emphasize harm or moral disgust, trading volume tends to increase. The general reversal of correlations when looking at stock price is interesting. Finally, all correlations are much weaker when looking at  volume shock. This could suggest that prior trading volume absorbs much of the information reflected in the sentiment measures.
 
 \begin{figure}[H]
     \centering
@@ -222,27 +213,29 @@ We can assess the usefulness of the GDELT sentiment measures on a broader scale 
     \label{fig:lagged_volume}
 \end{figure}
 
-Figure \ref{fig:monthly_volume} above shows that stock volume is clearly autocorrelated. Rather than report volumes autocorrelations, Figure \ref{fig:autocorrelations} reports the autocorrelations of the change in 15-minute trading volume. 
+Trading volume is highly autocorrelated, periodic, and persistent, as discussed by \textcite{brownlees2011intra}. Figure \ref{fig:autocorrelations} reports the autocorrelations of the 15-minute trading volume as well as change in volume, where we have calculated the autocorrelation separately for each stock and then averaged the correlations. The gray area represents the minimum and maximum autocorrelation for any of the stocks at a given lag.
 
 \begin{figure}[H]
     \centering
-    \caption{Autocorrelations of Change in Trading Volume}
-    \includegraphics[width=0.75\linewidth]{../Output/Correlation Matrices/Autocorrelations.pdf}
+    \caption{Autocorrelations of Intraday Trading Volume}
+    \includegraphics[width=\linewidth]{../Output/Volume Autocorrelations.pdf}
     \label{fig:autocorrelations}
 \end{figure}
 
-The stocks show a similar pattern: change in volume is negatively correlated with change in volume in the most recent few periods, and positively correlated with period 26, i.e. one trading day ago.
+Stock volume autocorrelation has a consistent (and therefore predictable) pattern. Change in volume is negatively correlated with 15-minute lagged volume, has very little correlation to mid-day times, and is highly correlated with volume at the same time on previous days. We also see slight negative autocorrelation in the times just before and after a daily lag. The daily lagged correlation is highly persistent, with a 5-day lag having nearly as large of a correlation as the 1-day lag. 
 
 \subsection{Models}
 Before reporting the model results, we establish a baseline model. Similar to \textcite{goyenko2024trading}, we use a simple average of the trading volume for the past 5 days as a baseline predictor of volume.\footnote{Specifically, we use the 15-minute volume at the same time of the previous 5 trading days. Note that \textcite{goyenko2024trading} use the log-returns of dollar volume compared to a 5-day moving average, while we do not take logs.} This simple model performs quite well, with an out-of-sample $R^2$ of just under 0.55 over the entire testing period.
 
 All models are evaluated using the out-of-sample $R^2$, described in the following formula:
 \begin{equation}
-    R^2_{OOS} = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
+    R^2 = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
 \end{equation}
 In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically assumed to be non-negative. OLS models with a constant are guaranteed to have a non-negative in-sample $R^2$.}
 
 \input{../output/r2_table_overall.tex}
+
+Comparing the OLS and LASSO results shows that, besides the Sentiment Only feature set, the models provide similar performance. Surprisingly, however, the LASSO models consistently shrink a significant portion of coefficients: 
 
 \subsection{Model Predictions}
 All results in this section use the LightGBM model with the highest $R^2$ from the table above, unless otherwise specified.
@@ -295,17 +288,17 @@ First, we report a plot that ranks all features by mean absolute Shapley value. 
 \begin{figure}[H]
     \centering
     \caption{Top 20 Features by Mean Absolute Shapley Value}
- %   \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.png}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.pdf}
     \label{fig:shapley_overall}
 \end{figure}
 
-Unsurprisingly, the most important features are traditional financial and time indicators. The 15-minute lag of stock volume and 1 day (26-period) lag of volume are the most important features, followed by an indicator for whether the time is the last 15 minutes of the trading day. Moving average terms, differences in volume, and additional lags make up much of the top 20 most important features. However, one sentiment feature is included in the top 20: the 4-period cumulative sum of the 22nd dimension of the headline LLM embedding.\footnote{LLM dimensions are 0-indexed, so feature name llm\_dimension\_21\_cum04\_lag01 refers to the 22nd dimension of the 32-dimensional LLM embedding vector.}
+Unsurprisingly, the most important features are traditional financial and time indicators. The 15-minute lag of stock volume and 1 day (26-period) lag of volume are the most important features, followed by an indicator for whether the time is the last 15 minutes of the trading day. Moving average terms, differences in volume, and additional lags make up much of the top 20 most important features. However, one sentiment feature is included in the top 20: the 4-period cumulative sum of the 21st dimension of the headline LLM embedding.\footnote{LLM dimensions are 0-indexed, so feature name llm\_dimension\_21\_cum04\_lag01 actually refers to the 22nd dimension of the 32-dimensional LLM embedding vector.}
 
 To further explore the sentiment features' contribution to the model, we report the mean absolute Shapley value for the sentiment features, sorted from highest to lowest.\footnote{Note that each sentiment variable has 5 features included: the original variable, and 4 cumulative sums of differing windows. We sum the Shapley values across these features to get its aggregate effect before taking the mean absolute value.} Figure \ref{fig:shapley_sentiment} reports the top 10 sentiment features by mean absolute Shapley value. As a reference point, the mean absolute Shapley value of the most important feature (the 15-minute lag of volume) is over 160,000.
 \begin{figure}[H]
     \centering
     \caption{Top 10 Sentiment Variables by Mean Absolute Shapley Value}
- %   \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.png}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.pdf}
     \label{fig:shapley_sentiment}
 \end{figure}
 There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 22nd dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance.\footnote{We trained a LightGBM with all features except the LLM variables, and found an $R^2$ of 0.693, which is worse than simply not including the sentiment features.} Overall, it is clear that sentiment measures add very little to the model's predictions, since nearly all sentiment features individually are less than 1000.
@@ -323,6 +316,7 @@ The lower the tracking error, the better the model is at predicting volume.
 
 \newpage
 \section{Discussion}
+\label{section:discussion}
 \subsection{Sentiment}
 As shown in the table above, lagged sentiment features appear to provide some meaningful information in predicting stock volume, though it is a small contribution. First, a model run only with the sentiment features (Sentiment Only) has an out-of-sample $R^2$ of 0.0762 with the LightGBM model, which is roughly comparable to a model that only uses the time indicators (Time Only), with an $R^2$ of 0.0978.\footnote{We did not test the hypothesis that the Sentiment Only $R^2$ is greater than 0, but with the large size of the testing data, it is likely that the $R^2$ is statstically significant.}
 
@@ -331,10 +325,12 @@ As shown in the table above, adding the sentiment indicators improves each model
 \subsection{Suggestions for Further Work}
 
 \section{Conclusion}
+\label{section:conclusion}
 The model results confirm that stock volume can be accurately forecasted better than a baseline model using historical averages. However, the results also show that sentiment measures add little additional content beyond historical financial information. This suggests that costly sentiment data curation may not be necessary for better-than-baseline stock volume prediction. However, financial institutions seeking the absolute best performance may want to include sentiment measures to get a small boost in forecasting accuracy.
 
 \newpage
 \printbibliography
+\newpage
 
 \section{Appendix}
 \subsection{Model Performance}
@@ -343,6 +339,53 @@ A table showing the MAPE for each model tested is shown below.
 
 \subsubsection{Alternative Model Specification}
 It is worth questioning whether, instead of predicting volume, the model would do better by predicting a normalized change in volume and then rescaling the predictions. We tried a similar method to \textcite{goyenko2024trading}, where we predict the change in volume compared to the baseline model's prediction. In testing the LightGBM model on the different feature sets, we found that these models do not improve the prediction of volume: using all features yields an $R^2$ of 0.6450, which is worse than our original model. Attempts to use the sentiment features alone or time features alone yielded models that predict volume worse than the baseline model.
+
+\subsubsection{Current Sentiment Model}
+One way to test assess the upper limit of the sentiment features' ability to explain stock volume is to model volume as a function of \textit{current} sentiment, rather than lagged sentiment. This is an ``oracle''-style model, in that the model is infeasible for predictive purposes but informative for understanding the maximum usefulness of the features. We trained a LightGBM model predicting current volume with all sentiment features, with the following parameters: learning rate 0.01, min. samples per leaf 200, L2 regularization 0, max. features 1. The model has an out-of-sample $R^2$ of 0.0883, which is around 15\% better than the lagged model reported in our main results above. This suggests both that the sentiment features provide only a limited amount of useful information about volume, and that the 15-minute lagged features provide nearly as much information as they possibly could.
+
+\subsection{GDELT Data Processing}
+\label{section:gdelt_details}
+Additional detail on GDELT data processing is provided below. For even further detail, we recommend viewing our source code in the GitHub repository linked in the introduction.
+
+GDELT offers a variety of databases to the public. For this analysis, we use the Global Knowledge Graph (GKG), version 2.\footnote{\url{https://blog.gdeltproject.org/gdelt-2-0-our-global-world-in-realtime/}.} For each article identified by GDELT, the GKG data includes:
+\begin{itemize}
+\singlespacing
+    \item the date scraped by GDELT (at the 15-minute level)
+    \item the article URL (or other unique identifier)
+    \item every location, business, and important person named in the article text
+    \item A wide variety of sentiment measures based on the article text
+    \item the article headline text (if available).\footnote{GDELT only started scraping the article headline in Sep. 2019. Prior to this time, we recover part of the article headline using the URL, which often contains a relevant description of the story.}
+\end{itemize}
+GDELT uploads GKG data in separate files every 15 minutes. These files are available to download for free, but the full combined data is available to query in Google BigQuery for a fee. The files are saved at the article level, i.e. the articles that GDELT scraped in a given 15-minute period.
+
+Because the combined data is several tens of terabytes (TBs), we did not have the storage capacity to save all the raw data. Instead, we filtered the raw files to articles matching the airline industry before saving the data. The general outline of our data processing is:
+\begin{itemize}
+\singlespacing
+    \item access and unzip the raw file for a given 15-minute period
+    \item keep a limited subset of columns from the raw file
+    \item limit to articles mentioning a location of ``United States"
+    \item limit to articles that mention at least one of the following organizations: Alaska Airlines, American Airlines, Delta Air Lines, Frontier Airlines, Hawaiian Airlines, JetBlue, Southwest Airlines, Spirit Airlines, Sun Country Airlines, United Airlines, Allegiant Air
+    \item drop articles that are missing any key fields
+\end{itemize}
+We repeated this process for the approximately 260,000 15-minute periods covering the timeline of 1/1/2018 00:00:00 to 5/30/2025 23:45:00. Data downloading was performed over multiple several-hour periods, and was parallelized to increase download speeds. After filtering, 218,574 raw GDELT files were combined for a total of 1,261,785 articles identified.\footnote{The total raw GDELT files kept is less than the theoretical 260,000 files for multiple reasons, including: no airlines mentioned in the past 15 minutes, and sporadic GDELT outages.}
+
+Next, we performed extensive data cleaning to filter the articles to those that would likely affect the stock market:
+\begin{itemize}
+\singlespacing
+    \item restricting the sentiment indicators to finance- and economics-specific measures
+    \item removing frequent article titles that relate to the front page of a news site (rather than a specific article) or an unrelated article
+    \item restricting to top news websites (e.g. MSN, Reuters) and finance-related websites (e.g. Investors.com)
+    \item removing discussions of historical airline events (such as the September 11 attacks)
+    \item removing articles that did not have a valid article title after data processing
+    \item removing a small set of duplicate articles\footnote{Duplicate articles are likely due to the data downloading process, which was stopped and restarted multiple times.}
+\end{itemize}
+After cleaning and filtering, we have 121,655 relevant articles and 118 sentiment measures.
+
+To extract additional sentiment from the GDELT data, we use a \textbf{Large Language Model} (LLM) to embed the article titles in a high-dimensional vector space. We apply a 596-million parameter embedding model to each article title.\footnote{\url{https://huggingface.co/Qwen/Qwen3-Embedding-0.6B}. This embedding model optionally takes an instruction prompt as an input. We use the following prompt for our embeddings: \textsf{Instruct: Extract the sentiment from this news headline that is most likely to affect the airline stock market. Query:}.} The model is trained to output 1024-dimensional vectors, however we use the Matryoshka Transformer (MatFormer) method to truncate the vectors to 32 dimensions, acting as a dimensionality reduction technique. These 32 dimensions are then used as additional sentiment measures in the model.
+
+After constructing the sentiment measures, we aggregate the data to align with stock market data and to identify sentiment scores separately by airline. Each metric is interacted with a set of indicator variables identifying the airline companies.\footnote{Multiple airlines can be mentioned in the same article, in which case the article is included each of the airlines' interacted sentiment values.} We then sum the metrics by 15-minute interval and fill in missing time periods with zeroes.\footnote{GDELT data is recorded in the UTC timezone, while my stock data is in EST. I converted the timezone before merging these datasets.} At this point, the GDELT data is in 15-minute intervals, but it includes times outside of market open. We further aggregate the data to align with market open. The choice of aggregation strategy is not obvious here. The number of observations to aggregate influences the scale of the resulting sentiment scores. Summing a particular window of observations (e.g. 2 hours) assumes that sufficient information is captured in that time period for predicting stock behavior.\footnote{Note that simply collapsing all of the market close data into one observation would result in large sentiment values at market open, and small values for the rest of the trading day. This would essentially vanish any effects of events that occur during the trading day.} We address this issue by calculating rolling sums over varying time windows: 1 hour, 4 hours, 12 hours, and 24 hours. These sums influence the non-after-hours observations as well, making them essentially moving averages. Each of these rolling sums is included in the feature set to allow the model to identify combinations of windows that best fit the data.
+
+After calculating the rolling sums for each airline, metric, and window, we calculate the first lag of each variable to ensure that they can be used for out-of-sample predictions. Finally, the data is reshaped so that each observation is a 15-minute-bin and stock ticker. The final data has 338,324 rows and 750 sentiment features.
 
 \subsection{Sentiment Measures}
 A complete list of the sentiment measures selected from GDELT's GKG is given below, along with their sources as reported by GDELT.\footnote{\url{http://data.gdeltproject.org/documentation/GCAM-MASTER-CODEBOOK.TXT}.}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  1 AUG 2025 13:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  4 AUG 2025 15:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -659,24 +659,24 @@ Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -736,7 +736,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 32.
+Package hyperref Info: Link coloring ON on input line 33.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -758,13 +758,13 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 32.
-Package biblatex Info: Reference segment=0 on input line 32.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+Package biblatex Info: Reference section=0 on input line 33.
+Package biblatex Info: Reference segment=0 on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
  (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
  (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -798,111 +798,134 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [11]
 
 [12]
+<../Output/GDELT Processing Diagram.pdf, id=257, 722.7pt x 406.51875pt>
+File: ../Output/GDELT Processing Diagram.pdf Graphic file (type pdf)
+<use ../Output/GDELT Processing Diagram.pdf>
+Package pdftex.def Info: ../Output/GDELT Processing Diagram.pdf  used on input line 148.
+(pdftex.def)             Requested size: 375.80544pt x 211.39096pt.
 
-[13] (../Output/summary_volume.tex)
+
+[13 <../Output/GDELT Processing Diagram.pdf>]
 
 [14]
-<../Output/monthly_volume_plot.pdf, id=272, 419.19548pt x 298.29831pt>
+
+[15] (../Output/summary_volume.tex)
+<../Output/monthly_volume_plot.pdf, id=304, 419.19548pt x 298.29831pt>
 File: ../Output/monthly_volume_plot.pdf Graphic file (type pdf)
 <use ../Output/monthly_volume_plot.pdf>
-Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 203.
+Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 194.
 (pdftex.def)             Requested size: 328.82707pt x 233.99626pt.
-<../Output/alk_event_plot_52.pdf, id=276, 860.10648pt x 714.7616pt>
+
+
+[16]
+<../Output/alk_event_plot_52.pdf, id=314, 860.10648pt x 714.7616pt>
 File: ../Output/alk_event_plot_52.pdf Graphic file (type pdf)
 <use ../Output/alk_event_plot_52.pdf>
-Package pdftex.def Info: ../Output/alk_event_plot_52.pdf  used on input line 211.
+Package pdftex.def Info: ../Output/alk_event_plot_52.pdf  used on input line 202.
 (pdftex.def)             Requested size: 422.77664pt x 351.3378pt.
 
 
-[15 <../Output/monthly_volume_plot.pdf>]
+[17 <../Output/monthly_volume_plot.pdf>]
 
-[16 <../Output/alk_event_plot_52.pdf>]
-<../Output/correlations.pdf, id=363, 520.46974pt x 708.01262pt>
+[18 <../Output/alk_event_plot_52.pdf>]
+<../Output/correlations.pdf, id=402, 520.46974pt x 708.01262pt>
 File: ../Output/correlations.pdf Graphic file (type pdf)
 <use ../Output/correlations.pdf>
-Package pdftex.def Info: ../Output/correlations.pdf  used on input line 221.
+Package pdftex.def Info: ../Output/correlations.pdf  used on input line 212.
 (pdftex.def)             Requested size: 281.85587pt x 383.43387pt.
 
 
-[17]
-<../Output/Correlation Matrices/Autocorrelations.pdf, id=373, 1084.05pt x 1445.4pt>
-File: ../Output/Correlation Matrices/Autocorrelations.pdf Graphic file (type pdf)
-<use ../Output/Correlation Matrices/Autocorrelations.pdf>
-Package pdftex.def Info: ../Output/Correlation Matrices/Autocorrelations.pdf  used on input line 230.
-(pdftex.def)             Requested size: 352.31625pt x 469.74944pt.
+[19 <../Output/correlations.pdf>]
+<../Output/Volume Autocorrelations.pdf, id=469, 1011.78pt x 361.35pt>
+File: ../Output/Volume Autocorrelations.pdf Graphic file (type pdf)
+<use ../Output/Volume Autocorrelations.pdf>
+Package pdftex.def Info: ../Output/Volume Autocorrelations.pdf  used on input line 221.
+(pdftex.def)             Requested size: 469.75502pt x 167.77238pt.
+
+Overfull \hbox (2.61183pt too wide) in paragraph at lines 225--226
+[]\OT1/cmr/m/n/12 Stock vol-ume au-to-cor-re-la-tion has a con-sis-tent (and there-fore pre-dictable) pat-tern. Change
+ []
 
 
-[18 <../Output/correlations.pdf>]
 
-[19 <../Output/Correlation Matrices/Autocorrelations.pdf>] (../Output/r2_table_overall.tex
+[20 <../Output/Volume Autocorrelations.pdf>] (../Output/r2_table_overall.tex
 Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
 )
 
-[20]
-<../Output/absolute_percent_error_distribution.pdf, id=500, 462.52798pt x 346.89601pt>
+[21]
+<../Output/absolute_percent_error_distribution.pdf, id=535, 462.52798pt x 346.89601pt>
 File: ../Output/absolute_percent_error_distribution.pdf Graphic file (type pdf)
 <use ../Output/absolute_percent_error_distribution.pdf>
-Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 255.
+Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 246.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
-
-
-[21]
-<../Output/mape_by_time.pdf, id=508, 462.52798pt x 346.89601pt>
+<../Output/mape_by_time.pdf, id=537, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_time.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time.pdf>
-Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 263.
+Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 254.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
 [22 <../Output/absolute_percent_error_distribution.pdf>]
-<../Output/mape_by_time_by_ticker.pdf, id=547, 867.24pt x 1156.32pt>
+<../Output/mape_by_time_by_ticker.pdf, id=577, 867.24pt x 1156.32pt>
 File: ../Output/mape_by_time_by_ticker.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time_by_ticker.pdf>
-Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 272.
+Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 263.
 (pdftex.def)             Requested size: 352.31625pt x 469.75385pt.
 
 
 [23 <../Output/mape_by_time.pdf>]
-<../Output/mape_by_day_of_week.pdf, id=600, 462.52798pt x 346.89601pt>
+<../Output/mape_by_day_of_week.pdf, id=630, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_week.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_week.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 280.
+Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 271.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
 [24 <../Output/mape_by_time_by_ticker.pdf>]
-<../Output/mape_by_day_of_month.pdf, id=664, 462.52798pt x 346.89601pt>
+<../Output/mape_by_day_of_month.pdf, id=695, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_month.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_month.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 287.
+Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 278.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
 [25 <../Output/mape_by_day_of_week.pdf> <../Output/mape_by_day_of_month.pdf>]
+<../Output/shap_beeswarm_all.pdf, id=785, 578.16pt x 686.565pt>
+File: ../Output/shap_beeswarm_all.pdf Graphic file (type pdf)
+<use ../Output/shap_beeswarm_all.pdf>
+Package pdftex.def Info: ../Output/shap_beeswarm_all.pdf  used on input line 289.
+(pdftex.def)             Requested size: 352.31625pt x 418.37451pt.
 
-[26]
 
-[27]
+[26 <../Output/shap_beeswarm_all.pdf>]
+<../Output/shap_sentiment_contributions.pdf, id=861, 722.7pt x 361.35pt>
+File: ../Output/shap_sentiment_contributions.pdf Graphic file (type pdf)
+<use ../Output/shap_sentiment_contributions.pdf>
+Package pdftex.def Info: ../Output/shap_sentiment_contributions.pdf  used on input line 299.
+(pdftex.def)             Requested size: 352.31625pt x 176.1588pt.
+
+
+[27 <../Output/shap_sentiment_contributions.pdf>]
 
 [28]
 
 [29]
 
-[30] (../Output/mape_table_overall.tex
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-)
+[30]
 
 [31]
 
 [32]
 
-[33]
+[33] (../Output/mape_table_overall.tex
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+
+ []
+
+)
 
 [34]
 
@@ -912,22 +935,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
 [37]
 
-[38] (./main.aux)
+[38]
+
+[39]
+
+[40]
+
+[41]
+
+[42]
+
+[43] (./main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-06-09>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8B7B3B72C50986ACEEBD4B9EDD104A71;3591.
+(rerunfilecheck)             Checksum: B1B9A68686872B7D635680073B9F1A0E;3310.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22418 strings out of 467887
- 383414 string characters out of 5438214
- 1280030 words of memory out of 5000000
- 50537 multiletter control sequences out of 15000+600000
+ 22521 strings out of 467887
+ 386723 string characters out of 5438214
+ 1280977 words of memory out of 5000000
+ 50613 multiletter control sequences out of 15000+600000
  646639 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,1948b,1952s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -935,10 +968,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (38 pages, 495076 bytes).
+Output written on main.pdf (43 pages, 591481 bytes).
 PDF statistics:
- 964 PDF objects out of 1000 (max. 8388607)
- 529 compressed objects within 6 object streams
- 137 named destinations out of 1000 (max. 500000)
- 254 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1170 PDF objects out of 1200 (max. 8388607)
+ 614 compressed objects within 7 object streams
+ 164 named destinations out of 1000 (max. 500000)
+ 253 words of extra memory for PDF output out of 10000 (max. 10000000)
 

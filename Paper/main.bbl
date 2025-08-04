@@ -101,6 +101,88 @@
     \field{year}{2019}
   \endentry
 
+  \entry{baccianella2010sentiwordnet}{inproceedings}{}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{3}{}{%
+      {{hash=BS}{%
+         family={Baccianella},
+         familyi={B\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=EA}{%
+         family={Esuli},
+         familyi={E\bibinitperiod},
+         given={Andrea},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Sebastiani},
+         familyi={S\bibinitperiod},
+         given={Fabrizio},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Valletta}%
+    }
+    \strng{namehash}{BS+1}
+    \strng{fullhash}{BSEASF+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{Lrec}
+    \field{number}{2010}
+    \field{pages}{2200\bibrangedash 2204}
+    \field{title}{Sentiwordnet 3.0: an enhanced lexical resource for sentiment analysis and opinion mining.}
+    \field{volume}{10}
+    \field{year}{2010}
+  \endentry
+
+  \entry{brownlees2011intra}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=BCT}{%
+         family={Brownlees},
+         familyi={B\bibinitperiod},
+         given={Christian\bibnamedelima T},
+         giveni={C\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=CF}{%
+         family={Cipollini},
+         familyi={C\bibinitperiod},
+         given={Fabrizio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=GGM}{%
+         family={Gallo},
+         familyi={G\bibinitperiod},
+         given={Giampiero\bibnamedelima M},
+         giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{BCT+1}
+    \strng{fullhash}{BCTCFGGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{3}
+    \field{pages}{489\bibrangedash 518}
+    \field{title}{Intra-daily volume modeling and prediction for algorithmic trading}
+    \field{volume}{9}
+    \field{journaltitle}{Journal of Financial Econometrics}
+    \field{year}{2011}
+  \endentry
+
   \entry{chen2016forecasting}{article}{}{}
     \name{author}{3}{}{%
       {{hash=CR}{%
@@ -308,6 +390,46 @@
     \field{year}{2021}
   \endentry
 
+  \entry{huang2023finbert}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=HAH}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Allen\bibnamedelima H},
+         giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Hui},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yi},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{HAH+1}
+    \strng{fullhash}{HAHWHYY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{2}
+    \field{pages}{806\bibrangedash 841}
+    \field{title}{FinBERT: A large language model for extracting information from financial text}
+    \field{volume}{40}
+    \field{journaltitle}{Contemporary Accounting Research}
+    \field{year}{2023}
+  \endentry
+
   \entry{jakel2019using}{thesis}{}{}
     \name{author}{1}{}{%
       {{hash=JT}{%
@@ -331,6 +453,40 @@
     }
     \field{type}{{B.S.} thesis}
     \field{year}{2019}
+  \endentry
+
+  \entry{kaplanski2010sentiment}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=KG}{%
+         family={Kaplanski},
+         familyi={K\bibinitperiod},
+         given={Guy},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Levy},
+         familyi={L\bibinitperiod},
+         given={Haim},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{KGLH1}
+    \strng{fullhash}{KGLH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{2}
+    \field{pages}{174\bibrangedash 201}
+    \field{title}{Sentiment and stock prices: The case of aviation disasters}
+    \field{volume}{95}
+    \field{journaltitle}{Journal of financial economics}
+    \field{year}{2010}
   \endentry
 
   \entry{ke2017lightgbm}{article}{}{}
@@ -430,6 +586,64 @@
     \field{title}{Gdelt: Global data on events, location, and tone, 1979--2012}
     \field{volume}{2}
     \field{year}{2013}
+  \endentry
+
+  \entry{loughran2011liability}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=LT}{%
+         family={Loughran},
+         familyi={L\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MB}{%
+         family={McDonald},
+         familyi={M\bibinitperiod},
+         given={Bill},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{LTMB1}
+    \strng{fullhash}{LTMB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{1}
+    \field{pages}{35\bibrangedash 65}
+    \field{title}{When is a liability not a liability? Textual analysis, dictionaries, and 10-Ks}
+    \field{volume}{66}
+    \field{journaltitle}{The Journal of finance}
+    \field{year}{2011}
+  \endentry
+
+  \entry{mejova2009sentiment}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=MY}{%
+         family={Mejova},
+         familyi={M\bibinitperiod},
+         given={Yelena},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MY1}
+    \strng{fullhash}{MY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{1\bibrangedash 34}
+    \field{title}{Sentiment analysis: An overview}
+    \field{volume}{5}
+    \field{journaltitle}{University of Iowa, Computer Science Department}
+    \field{year}{2009}
   \endentry
 
   \entry{nashir2023indonesian}{inproceedings}{}{}
@@ -621,6 +835,40 @@
     \field{year}{2014}
   \endentry
 
+  \entry{timmermann2004efficient}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=TA}{%
+         family={Timmermann},
+         familyi={T\bibinitperiod},
+         given={Allan},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GCW}{%
+         family={Granger},
+         familyi={G\bibinitperiod},
+         given={Clive\bibnamedelima WJ},
+         giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{TAGCW1}
+    \strng{fullhash}{TAGCW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{number}{1}
+    \field{pages}{15\bibrangedash 27}
+    \field{title}{Efficient market hypothesis and forecasting}
+    \field{volume}{20}
+    \field{journaltitle}{International Journal of forecasting}
+    \field{year}{2004}
+  \endentry
+
   \entry{wang2024ensemble}{article}{}{}
     \name{author}{4}{}{%
       {{hash=WJ}{%
@@ -665,6 +913,46 @@
     \field{volume}{43}
     \field{journaltitle}{Journal of Forecasting}
     \field{year}{2024}
+  \endentry
+
+  \entry{wankhade2022survey}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=WM}{%
+         family={Wankhade},
+         familyi={W\bibinitperiod},
+         given={Mayur},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RACS}{%
+         family={Rao},
+         familyi={R\bibinitperiod},
+         given={Annavarapu Chandra\bibnamedelima Sekhara},
+         giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Kulkarni},
+         familyi={K\bibinitperiod},
+         given={Chaitanya},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{WM+1}
+    \strng{fullhash}{WMRACSKC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{number}{7}
+    \field{pages}{5731\bibrangedash 5780}
+    \field{title}{A survey on sentiment analysis methods, applications, and challenges}
+    \field{volume}{55}
+    \field{journaltitle}{Artificial Intelligence Review}
+    \field{year}{2022}
   \endentry
 \enddatalist
 \endinput
