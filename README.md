@@ -29,14 +29,6 @@ This research project leverages the Global Database of Events, Language, and Ton
 - Python 3.12
 - `uv` package manager (recommended) or `pip`
 
-## Machine Learning Models
-
-The project implements and compares several advanced models:
-
-- **Traditional Models**: Baseline statistical models for comparison
-- **Neural Networks**: RNN, LSTM, and CNN architectures for sequence prediction
-- **LightGBM**: Gradient boosting models with hyperparameter tuning
-
 ## Key Findings
 
 This research demonstrates:
