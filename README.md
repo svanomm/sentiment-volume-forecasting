@@ -1,6 +1,6 @@
 # Assessing the Usefulness of News Sentiment for Real-Time Airline Stock Prediction
 
-A directed practicum project by Steven VanOmmeren examining the impact of news sentiment on airline stock prices using advanced machine learning techniques and real-time data analysis.
+A directed practicum project by Steven VanOmmeren examining the impact of news sentiment on airline stocks using advanced machine learning techniques and real-time data analysis.
 
 ## Overview
 
