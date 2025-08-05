@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
 \contentsline {section}{\numberline {2}Literature Review}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Stock Volume Prediction}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Sentiment Analysis}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Sentiment Analysis}{6}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}GDELT}{8}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Methods}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Data Preparation}{10}{subsection.3.1}%
@@ -13,17 +13,18 @@
 \contentsline {subsection}{\numberline {4.1}Summary Analysis}{16}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Correlation Analysis}{18}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Models}{20}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Model Predictions}{22}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{27}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}VWAP Tracking Error}{32}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Discussion}{34}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sentiment}{34}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{34}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Limitations and Suggestions for Future Work}{35}{subsection.5.3}%
+\contentsline {subsection}{\numberline {4.4}Model Predictions}{23}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{26}{subsubsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.5}Application: VWAP Tracking Error}{31}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Discussion}{33}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sentiment}{33}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{33}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Limitations and Suggestions for Future Work}{34}{subsection.5.3}%
 \contentsline {section}{\numberline {6}Conclusion}{36}{section.6}%
 \contentsline {section}{\numberline {7}Appendix}{40}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Model Performance}{40}{subsection.7.1}%
 \contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{40}{subsubsection.7.1.1}%
 \contentsline {subsubsection}{\numberline {7.1.2}Current Sentiment Model}{41}{subsubsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.2}GDELT Data Processing}{41}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Sentiment Measures}{44}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.2}VWAP Tracking Error}{41}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}GDELT Data Processing}{42}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Sentiment Measures}{45}{subsection.7.4}%
