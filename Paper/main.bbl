@@ -622,6 +622,88 @@
     \field{year}{2011}
   \endentry
 
+  \entry{lundberg2020local2global}{article}{}{}
+    \name{author}{10}{}{%
+      {{hash=LSM}{%
+         family={Lundberg},
+         familyi={L\bibinitperiod},
+         given={Scott\bibnamedelima M.},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=EG}{%
+         family={Erion},
+         familyi={E\bibinitperiod},
+         given={Gabriel},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=CH}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Hugh},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={DeGrave},
+         familyi={D\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PJM}{%
+         family={Prutkin},
+         familyi={P\bibinitperiod},
+         given={Jordan\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=NB}{%
+         family={Nair},
+         familyi={N\bibinitperiod},
+         given={Bala},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Katz},
+         familyi={K\bibinitperiod},
+         given={Ronit},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Himmelfarb},
+         familyi={H\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Bansal},
+         familyi={B\bibinitperiod},
+         given={Nisha},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LSI}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Su-In},
+         giveni={S\bibinithyphendelim I\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{LSM+1}
+    \strng{fullhash}{LSMEGCHDAPJMNBKRHJBNLSI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{1}
+    \field{pages}{2522\bibrangedash 5839}
+    \field{title}{From local explanations to global understanding with explainable AI for trees}
+    \field{volume}{2}
+    \field{journaltitle}{Nature Machine Intelligence}
+    \field{year}{2020}
+  \endentry
+
   \entry{mejova2009sentiment}{article}{}{}
     \name{author}{1}{}{%
       {{hash=MY}{%

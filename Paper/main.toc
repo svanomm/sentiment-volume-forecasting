@@ -14,16 +14,16 @@
 \contentsline {subsection}{\numberline {4.2}Correlation Analysis}{18}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Models}{20}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Model Predictions}{22}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{26}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}VWAP Tracking Error}{28}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Discussion}{29}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sentiment}{29}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{29}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Suggestions for Further Work}{29}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Conclusion}{29}{section.6}%
-\contentsline {section}{\numberline {7}Appendix}{34}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Model Performance}{34}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{34}{subsubsection.7.1.1}%
-\contentsline {subsubsection}{\numberline {7.1.2}Current Sentiment Model}{35}{subsubsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.2}GDELT Data Processing}{35}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Sentiment Measures}{38}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{27}{subsubsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.5}VWAP Tracking Error}{32}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Discussion}{34}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sentiment}{34}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{34}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Suggestions for Further Work}{34}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{34}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{39}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Model Performance}{39}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{39}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Current Sentiment Model}{40}{subsubsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.2}GDELT Data Processing}{40}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Sentiment Measures}{43}{subsection.7.3}%

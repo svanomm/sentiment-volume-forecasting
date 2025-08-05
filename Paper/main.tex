@@ -235,7 +235,9 @@ In the formula, $O$ denotes the set of testing data, i.e. data that were not use
 
 \input{../output/r2_table_overall.tex}
 
-Comparing the OLS and LASSO results shows that, besides the Sentiment Only feature set, the models provide similar performance. Surprisingly, however, the LASSO models consistently shrink a significant portion of coefficients: 
+Comparing the OLS and LASSO results shows that, besides the Sentiment Only feature set, the models provide similar performance. Surprisingly, however, the LASSO models consistently shrink a significant portion of coefficients: 392 of the 1576 features (nearly 25\%) are shrunk to zero in the model with all features.\footnote{Percentage of features shrunk to zero in the LASSO model by feature set: 0\% (Time Only), 9.9\% (Sentiment Only), 16.9\% (Own-Stock Only), 23.5\% (Market + Own-Stock), 24.3\% (Market + Own-Stock + Time), 24.9\% (All Features).} This suggests that the LASSO model identifies and removes a large number of features that do not contribute to the model's performance, although the features do not seem to hurt the OLS model's performance in general.
+
+The Sentiment Only model results show that OLS and the Neural Network models are unable to effectively utilize sentiment information, with the Neural Network model having a negative $R^2$. The LASSO and LightGBM models have low but non-trivial out-of-sample performance, with the LightGBM model clearly performing best at over double the $R^2$ of the LASSO model. This suggests that the sentiment measures provide a small but non-trivial amount of information for predicting stock volume when harnessed correctly.
 
 \subsection{Model Predictions}
 All results in this section use the LightGBM model with the highest $R^2$ from the table above, unless otherwise specified.
@@ -282,37 +284,66 @@ Next, we assess the model's performance by day of week and day of month. Figure 
 \end{figure}
 
 \subsubsection{Sentiment Contribution}
-We assess how important the sentiment measures are to the models' performance through the use of Shapley values. [[Explanation of Shapley values.]]
+We assess how important the sentiment measures are to the models' performance through the use of Shapley values.\footnote{We calculate Shapley values using a new, exact, tree-based method developed by \textcite{lundberg2020local2global}, as incorporated in the Python package \textsf{shap}.} Shapley values attribute the importance of each feature for a given model through the mechanics of cooperative game theory. Shapley values tell you by how much the given feature contributes the model's final prediction. For example, if a feature has a Shapley value of 100, then the model's prediction is 100 higher than it would be without that feature. A higher Shapley value (in absolute value) means that the feature contributes more to the model's predictions, meaning it is more important.
 
-First, we report a plot that ranks all features by mean absolute Shapley value. Figure \ref{fig:shapley_overall} reports the top 20 features by mean absolute Shapley value, which is a measure of how much each feature contributes to the model's predictions.
+First, we report the mean absolute Shapley value for the top 20 most important features. These are the features that contribute most to the model's predicted volume, on average. Recall that because we scale all features to the interval $[0,1]$, Shapley values are comparable between features.
 \begin{figure}[H]
     \centering
     \caption{Top 20 Features by Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_beeswarm_all.pdf}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_all.pdf}
     \label{fig:shapley_overall}
 \end{figure}
 
 Unsurprisingly, the most important features are traditional financial and time indicators. The 15-minute lag of stock volume and 1 day (26-period) lag of volume are the most important features, followed by an indicator for whether the time is the last 15 minutes of the trading day. Moving average terms, differences in volume, and additional lags make up much of the top 20 most important features. However, one sentiment feature is included in the top 20: the 4-period cumulative sum of the 21st dimension of the headline LLM embedding.\footnote{LLM dimensions are 0-indexed, so feature name llm\_dimension\_21\_cum04\_lag01 actually refers to the 22nd dimension of the 32-dimensional LLM embedding vector.}
 
-To further explore the sentiment features' contribution to the model, we report the mean absolute Shapley value for the sentiment features, sorted from highest to lowest.\footnote{Note that each sentiment variable has 5 features included: the original variable, and 4 cumulative sums of differing windows. We sum the Shapley values across these features to get its aggregate effect before taking the mean absolute value.} Figure \ref{fig:shapley_sentiment} reports the top 10 sentiment features by mean absolute Shapley value. As a reference point, the mean absolute Shapley value of the most important feature (the 15-minute lag of volume) is over 160,000.
+To further explore the sentiment features' contribution to the model, we report the mean absolute Shapley value for the sentiment features, sorted from highest to lowest.\footnote{Note that each sentiment variable has 5 features included: the original variable, and 4 cumulative sums of differing windows. We sum the Shapley values across these features to get its aggregate effect before taking the mean absolute value.} Figure \ref{fig:shapley_sentiment} reports the sentiment features that were shown above in the correlation analysis of Figure \ref{fig:lagged_volume}. As a reference point, the mean absolute Shapley value of the most important feature (the 15-minute lag of volume) is over 160,000.
 \begin{figure}[H]
     \centering
-    \caption{Top 10 Sentiment Variables by Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_sentiment_contributions.pdf}
+    \caption{Selected GDELT Sentiment Variables, Mean Absolute Shapley Value}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment.pdf}
     \label{fig:shapley_sentiment}
 \end{figure}
-There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 22nd dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance.\footnote{We trained a LightGBM with all features except the LLM variables, and found an $R^2$ of 0.693, which is worse than simply not including the sentiment features.} Overall, it is clear that sentiment measures add very little to the model's predictions, since nearly all sentiment features individually are less than 1000.
+Besides the Care/Harm moral sentiment feature, the remaining features contribute very little to the model's predictions on average. Figure \ref{fig:shapley_sentiment_top20} below shows the top 20 sentiment features, including the LLM dimensions, sorted by mean absolute Shapley value.
+
+\begin{figure}[H]
+    \centering
+    \caption{Top 20 Sentiment Features by Mean Absolute Shapley Value}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment_top20.pdf}
+    \label{fig:shapley_sentiment_top20}
+\end{figure}
+
+There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 21st dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance.\footnote{We trained a LightGBM with all features except the LLM variables, and found an $R^2$ of 0.693, which is worse than simply not including the sentiment features.} 
+
+As an additional study of the effects of sentiment on the model's predictions, we analyze how the model predicts volume for American Airlines surrounding the Jan. 2025 crash in Washington, D.C. that killed 67 people.\footnote{\url{https://apnews.com/article/ronald-reagan-national-airport-crash-325edc6c0c2439dd6c1e73a81e382c0e}.} Specifically, we look at the model's predictions of volume both with and without the effects of the sentiment features by removing their Shapley values.
+
+\begin{figure}[H]
+    \centering
+    \caption{American Airlines Volume Predictions Surrounding Jan. 2025 Crash}
+    \includegraphics[width=\linewidth]{../Output/shap_aal_crash.pdf}
+    \label{fig:shapley_aal_crash}
+\end{figure}
+
+The crash happened after the market had closed on Jan. 29, and so the news articles had been public for several hours before the market opened on Jan. 30.\footnote{There was significant after-hours trading of AAL on the morning of Jan. 30, which is not reflected in the figure. We chose not to include after-hours data in our analysis because most airlines hardly ever have any after-hours trading, but this is an example where it would have been helpful.} Even when analyzing what is likely the single most significant U.S. airline disaster during the entire data period, the model's predictions with and without sentiment features are nearly identical after the crash. The only differences are market open (9:30), where the model without sentiment features (green line) would have predicted slightly lower volume than when the features are included (orange line), and 9:45, where the sentiment features lead the model to overpredict volume. It is not at all obvious that the sentiment features provide meaningful value to the model's predictions, even in this extreme case.
+
+Overall, it is clear that these sentiment measures add very little additional information to the model's predictions compared to the financial information.
 
 \subsection{VWAP Tracking Error}
 As discussed above, one of the primary uses of more accurate predictions of volume is to reduce the price impact of large trades: trades that comprise a significant proportion of total volume will have a higher price impact, which makes the trade more costly. Effectively forecasting volume would help the trader identify the right time to trade (i.e. when volume is high) to reduce those costs.
 
-A full confirmation that the model reduces transaction costs would require us to actually make large trades in the market with and without the model, or to simulate such trades, following \textcite{satish2014predicting}. We instead assess the LightGBM model's ability to reduce trading costs by comparing its VWAP tracking error to the baseline model's tracking error, following the approach described in \textcite{cucuringu2025forecasting} and \textcite{chen2016forecasting}. VWAP tracking error is defined as the absolute percent difference between the volume-weighted average price (VWAP) for stock $i$ at time $t$ and the stock's predicted VWAP at time $t$:
+A full confirmation that the model reduces transaction costs would require us to actually make large trades in the market with and without the model, or to simulate such trades, as in \textcite{satish2014predicting}. We instead assess the LightGBM model's ability to reduce trading costs by comparing its VWAP tracking error to the baseline model's tracking error, following the approach described in \textcite{chen2016forecasting} and \textcite{cucuringu2025forecasting}. VWAP tracking error is defined as the absolute percent difference between the volume-weighted average price (VWAP) for stock $i$ at time $t$ and the stock's predicted VWAP at time $t$:
 \begin{align}
     \text{VWAP}(i,t_0,t_1) &= \frac{\sum_{t=t_0}^{t_1} v_{it} \cdot p_{it}}{\sum_{t=t_0}^T v_{it}} \\
-    \text{TE}_{it} &= \left| \frac{\text{VWAP}_t - \text{Predicted VWAP}_t}{\text{VWAP}_t} \right| \times 100\%
+    \text{TE}_{it} &= \left| \frac{\text{VWAP}_{it} - \text{Predicted VWAP}_{it}}{\text{VWAP}_{it}} \right| \times 100\%
 \end{align}
 
-The lower the tracking error, the better the model is at predicting volume.
+We use the last price in each 15-minute period for the VWAP formula. The lower the tracking error, the better the model is at predicting volume. Figure \ref{fig:vwap_tracking_error} shows the tracking error of the baseline model and the best model for each ticker. As can be seen, the LightGBM model provides a significant reduction in tracking error for each ticker, with the tracking error for DAL as low as 6.0 basis points (0.06\%). The largest proportional reduction in tracking error is for DAL as well with a 46.5\% reduction, while the smallest reduction is for ALGT at 11.1\%. A simple average across stocks yields an average improvement of \textbf{31.6\%} compared to the baseline model. In levels, the best model improves tracking error from 13.6 to 9.5 basis points, or \textbf{4.1} basis points on average. As stated by \textcite{chen2016forecasting}, for a broker with \$10 billion in turnover, saving just 1 basis point in trading costs would be worth \$1 million. 
+
+\begin{figure}[H]
+    \centering
+    \caption{VWAP Tracking Error Comparison by Ticker}
+    \includegraphics[width=0.85\linewidth]{../Output/vwap_compare.pdf}
+    \label{fig:vwap_tracking_error}
+\end{figure}
 
 \newpage
 \section{Discussion}
