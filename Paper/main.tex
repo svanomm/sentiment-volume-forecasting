@@ -1,9 +1,4 @@
 \documentclass[12pt]{article}
-%\usepackage{tocloft}% to configure the ToC <<<<<
-%\setlength{\cftsecnumwidth}{4.5ex}% set the width to the section number in the ToC <<<<<
-%\renewcommand{\thesection}{\Roman{section}.} 
-%\renewcommand{\thesubsection}{\quad \Alph{subsection}.}
-%\renewcommand{\thesubsubsection}{\qquad \roman{subsubsection}.}
 
 \usepackage{amssymb,amsmath,amsfonts,bbm,bm,dcolumn,booktabs,eurosym,geometry,ulem,graphicx,color,xcolor,setspace,sectsty,comment,float,caption,pdflscape,subfigure,array,hyperref,listings}
 \usepackage{xurl}
@@ -208,8 +203,13 @@ We can assess the usefulness of the GDELT sentiment measures on a broader scale 
 
 \begin{figure}[H]
     \centering
-    \caption{Correlation of Trading Volume/Price and Lagged Sentiment Measures}
+    \caption{Correlation of Trading Volume, Price, and Lagged Sentiment Measures}
     \includegraphics[width=0.6\linewidth]{../Output/correlations.pdf}
+    \begin{minipage}{0.8\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Reports the correlation of trading volume, price, and lagged sentiment measures (the columns) and selected GDELT sentiment measures (the rows). The GDELT features are lagged by 1 period.
+    \end{minipage}
     \label{fig:lagged_volume}
 \end{figure}
 
@@ -219,6 +219,11 @@ Trading volume is highly autocorrelated, periodic, and persistent, as discussed 
     \centering
     \caption{Autocorrelations of Intraday Trading Volume}
     \includegraphics[width=\linewidth]{../Output/Volume Autocorrelations.pdf}
+    \begin{minipage}{0.95\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Autocorrelations are calculated separately for each stock over the entire data period of 2018-01-01 to 2025-05-30. The blue line reports the simple average across all stocks, while the gray area denotes the minimum and maximum autocorrelation for each lag.
+    \end{minipage}
     \label{fig:autocorrelations}
 \end{figure}
 
@@ -229,7 +234,7 @@ Before reporting the model results, we establish a baseline model. Similar to \t
 
 All models are evaluated using the out-of-sample $R^2$, described in the following formula:
 \begin{equation}
-    R^2 = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
+    R^2_{OOS} = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
 \end{equation}
 In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically assumed to be non-negative. OLS models with a constant are guaranteed to have a non-negative in-sample $R^2$.}
 
@@ -244,12 +249,17 @@ The Sentiment Only model results show that OLS and the Neural Network models are
 \subsection{Model Predictions}
 All results in this section use the LightGBM model with the highest $R^2$ from the table above, unless otherwise specified.
 
-First, we assess the model's out-of-sample performance on the validation and test sets (a combined 18 months of data) on a variety of subsets of the data. Figure \ref{fig:absolute_percent_error_distribution} reports the cumulative distribution of absolute percent error for the best model, as well as the baseline model. When plotted this way, a model is better at predicting volume if its cumulative distribution lies to the left of the other model's cumulative distribution. The figure shows that the LightGBM model is uniformly and significantly better than the baseline model on an absolute percent error basis.
+First, we assess the model's out-of-sample performance on the validation and test sets (a combined 18 months of data) on a variety of subsets of the data. Figure \ref{fig:absolute_percent_error_distribution} reports the cumulative distribution of absolute percent error for the best model, as well as the baseline model. When plotted this way, a model is better at predicting volume if its cumulative distribution lies to the left of the other model's cumulative distribution. The figure shows that the LightGBM model is uniformly and significantly better than the baseline model on an absolute percent error basis. In other words, the best model's distribution of absolute percent error has first-order stochastic dominance over the baseline model.
 
 \begin{figure}[H]
     \centering
     \caption{Absolute Percent Error Distribution}
     \includegraphics[width=0.75\linewidth]{../Output/absolute_percent_error_distribution.pdf}
+    \begin{minipage}{0.7\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each line is the cumulative probability distribution of absolute percent error for a given model. Lines that lie further to the left indicate that the model has consistently lower error.
+    \end{minipage}
     \label{fig:absolute_percent_error_distribution}
 \end{figure}
 
@@ -258,6 +268,11 @@ Since stock volume can vary periodically, it is worth investigating the model's 
     \centering
     \caption{MAPE by Time of Day}
     \includegraphics[width=0.75\linewidth]{../Output/mape_by_time.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each point is the mean absolute percent error for the best model's predictions in a given 15-minute trading bin. The averages are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:mape_by_time}
 \end{figure}
 The model is significantly worse at predicting volume in the first two periods of the trading day, which are highly volatile on a percentage basis. The model is significantly better at predicting volume towards the end of the day; however, this is on a MAPE basis and so the results would differ on an absolute error basis (where end-of-day usually sees a spike in volume traded). Mid-day predictions are approximately of equal accuracy on average.
@@ -267,6 +282,11 @@ Figure \ref{fig:mape_by_time_by_ticker} breaks out the figure above into individ
     \centering
     \caption{MAPE by Time of Day and Ticker}
     \includegraphics[width=0.75\linewidth]{../Output/mape_by_time_by_ticker.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each point is the mean absolute percent error for the best model's predictions in a given stock ticker and 15-minute trading bin. The averages are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:mape_by_time_by_ticker}
 \end{figure}
 
@@ -275,6 +295,11 @@ Next, we assess the model's performance by day of week and day of month. Figure 
     \centering
     \caption{MAPE by Day of Week}
     \includegraphics[width=0.6\linewidth]{../Output/mape_by_day_of_week.pdf}
+    \begin{minipage}{0.6\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each point is the mean absolute percent error for the best model's predictions in a given day of week. The averages are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:mape_by_day_of_week}
 \end{figure}
 
@@ -282,6 +307,11 @@ Next, we assess the model's performance by day of week and day of month. Figure 
     \centering
     \caption{MAPE by Day of Month}
     \includegraphics[width=0.6\linewidth]{../Output/mape_by_day_of_month.pdf}
+    \begin{minipage}{0.6\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each point is the mean absolute percent error for the best model's predictions in a given day of the month. The averages are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:mape_by_day_of_month}
 \end{figure}
 
@@ -293,6 +323,11 @@ First, we report the mean absolute Shapley value for the top 20 most important f
     \centering
     \caption{Top 20 Features by Mean Absolute Shapley Value}
     \includegraphics[width=0.75\linewidth]{../Output/shap_abs_all.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:shapley_overall}
 \end{figure}
 
@@ -303,6 +338,11 @@ To further explore the sentiment features' contribution to the model, Figure \re
     \centering
     \caption{Selected GDELT Sentiment Variables, Mean Absolute Shapley Value}
     \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:shapley_sentiment}
 \end{figure}
 Besides the Care/Harm moral sentiment feature, the remaining features contribute very little to the model's predictions on average. Figure \ref{fig:shapley_sentiment_top20} below shows the top 20 sentiment features, including the LLM dimensions, sorted by mean absolute Shapley value.
@@ -311,6 +351,11 @@ Besides the Care/Harm moral sentiment feature, the remaining features contribute
     \centering
     \caption{Top 20 Sentiment Features by Mean Absolute Shapley Value}
     \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment_top20.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:shapley_sentiment_top20}
 \end{figure}
 
@@ -322,6 +367,11 @@ As an additional study of the effects of sentiment on the model's predictions, w
     \centering
     \caption{American Airlines Volume Predictions Surrounding Jan. 2025 Crash}
     \includegraphics[width=\linewidth]{../Output/shap_aal_crash.pdf}
+    \begin{minipage}{0.95\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: The blue line is actual trading volume for American Airlines. The orange line is the best model's predicted volume. The green line removes the Shapley contribution of all sentiment features from the predicted volume.
+    \end{minipage}
     \label{fig:shapley_aal_crash}
 \end{figure}
 
@@ -344,6 +394,11 @@ We use the last price in each 15-minute period for the VWAP formula.\footnote{Id
     \centering
     \caption{VWAP Tracking Error Comparison by Ticker}
     \includegraphics[width=0.85\linewidth]{../Output/vwap_compare.pdf}
+    \begin{minipage}{0.8\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: For each model, we calculate the daily volume weighted average price as a function of predicted volume and actual price in each 15-minute bin. The bars report the average absolute percent difference between actual daily VWAP and predicted VWAP, by ticker, for the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:vwap_tracking_error}
 \end{figure}
 
@@ -400,6 +455,11 @@ The figure below reports the average VWAP tracking error for each model tested, 
     \centering
     \caption{Average VWAP Tracking Error by Model}
     \includegraphics[width=\linewidth]{../Output/vwap_compare_all_models.pdf}
+    \begin{minipage}{0.9\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: For each model, we calculate the daily volume weighted average price as a function of predicted volume and actual price in each 15-minute bin. The bars report the average absolute percent difference between actual daily VWAP and predicted VWAP, by ticker, for the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
     \label{fig:vwap_tracking_error_all}
 \end{figure}
 
