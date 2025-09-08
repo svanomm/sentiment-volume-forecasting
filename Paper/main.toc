@@ -16,15 +16,16 @@
 \contentsline {subsection}{\numberline {4.4}Model Predictions}{24}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Sentiment Contribution}{29}{subsubsection.4.4.1}%
 \contentsline {subsection}{\numberline {4.5}Application: VWAP Tracking Error}{34}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Discussion}{37}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sentiment}{37}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{37}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Limitations and Suggestions for Future Work}{38}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Conclusion}{40}{section.6}%
-\contentsline {section}{\numberline {7}Appendix}{44}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Model Performance}{44}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{44}{subsubsection.7.1.1}%
-\contentsline {subsubsection}{\numberline {7.1.2}Current Sentiment Model}{45}{subsubsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.2}VWAP Tracking Error}{45}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}GDELT Data Processing}{47}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Sentiment Measures}{49}{subsection.7.4}%
+\contentsline {section}{\numberline {5}Discussion}{36}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sentiment}{36}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Model Performance Compared to the Literature}{36}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Limitations and Suggestions for Future Work}{37}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{39}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{43}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Model Performance}{43}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Alternative Model Specification}{43}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Current Sentiment Model}{44}{subsubsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.2}VWAP Tracking Error}{44}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Sentiment Shapley Values}{46}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}GDELT Data Processing}{47}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Sentiment Measures}{50}{subsection.7.5}%

@@ -27,12 +27,12 @@ breaklines=true
 
 \begin{document}
 \title{Predicting Intraday Trading Volume with News Sentiment: An Analysis of U.S. Airline Stocks}
-\author{Steven VanOmmeren\thanks{\href{mailto:sevanommeren@gmail.com}{sevanommeren@gmail.com}. A complete replication package of this project is available at \url{https://github.com/svanomm/sentiment-volume-forecasting}. Analysis datasets are available upon request.}}
+\author{Steven VanOmmeren\thanks{\href{mailto:sevanommeren@gmail.com}{sevanommeren@gmail.com}. We thank Arvind Sharma for providing helpful feedback throughout the development of this paper. A complete replication package of our analysis is available at \url{https://github.com/svanomm/sentiment-volume-forecasting}. Analysis datasets are available upon request.}}
 \date{\today}
 \maketitle
 \begin{abstract}
 \noindent
-    When institutional traders buy or sell large amounts of stock, they often have to consider the impact of their trades on the market price. Existing literature has shown that trading volume can be reliably forecasted and can translate to reduced price impact on large trades. In this paper, we attempt to model 15-minute ahead trading volume for 7 major U.S. airlines with a large set of financial variables as well as sentiment measures from the Global Database of Events, Language, and Tone (GDELT). Through a combination of feature engineering, model selection, and hyperparameter tuning, we achieve an out-of-sample $R^2$ of just over 70\% in the prediction of 15-minute-ahead trading volume, over a testing period of approximately 18 months. Our best model explains 25\% more variation than a naive forecast, and is comparable with state-of-the-art models in the literature. We find that sentiment measures improve the model's predictions, but only marginally. These results suggest that sentiment measures are not necessary for accurate trading volume prediction, but they do not hurt the model's performance either. 
+    When institutional traders buy or sell large amounts of stock, they often have to consider the impact of their trades on the market price. Existing literature has shown that trading volume can be reliably forecasted and can translate to reduced price impact on large trades. In this paper, we attempt to model 15-minute ahead trading volume for 7 U.S. airline stocks with a large set of financial variables as well as sentiment measures from the Global Database of Events, Language, and Tone (GDELT). Through a combination of feature engineering, model selection, and hyperparameter tuning, we achieve an out-of-sample $R^2$ of just over 70\% in the prediction of 15-minute-ahead trading volume, over a testing period of approximately 18 months. Our best model explains 15 percentage points more variation than a naive forecast, and is comparable with state-of-the-art models in the literature. We find that sentiment measures improve the model's predictions, but only marginally so. These results suggest that sentiment measures are not necessary for accurate trading volume prediction, but they do not hurt the model's performance either. 
 \end{abstract}
 \newpage
 \tableofcontents
@@ -42,7 +42,7 @@ breaklines=true
 \section{Introduction}
 The commercial airline industry is somewhat unique in that information about adverse events streams nearly 24/7/365, is highly publicized, and has potential to dramatically affect public trust in the company. In today's digital world, news of a fatal plane crash typically appears online within an hour. Knowledge of a plane crash or other adverse event could significantly impact the airline's stock, either because the event reveals additional information to the public or because traders think that the event will matter. In addition, the general lack of after-hours trading for U.S. commercial airline stock allows real-time news sentiment to anticipate stock market movements.
 
-We examine the impact of such events on airline stock volume at the near-real-time level. Specifically, we leverage data from the Global Database of Events, Language, and Tone (GDELT) (\textcite{leetaru2013gdelt}) to scrape a rich set of sentiment measures from 1.3 million news articles mentioning the major U.S. commercial airlines. GDELT's Global Knowledge Graph (GKG) database provides over 2000 sentiment measures in the form of word counts and scored values, and the database is updated every 15 minutes and is available to download for free. We additionally use a large language model to encode additional sentiment from the headline of the GDELT articles. We use these (and other) data to predict intraday trading volumes for 7 major U.S. airline stocks in 15-minute increments during the trading days from January 2018 to May 2025.
+We examine the impact of such events on airline stock volume at the near-real-time level. Specifically, we leverage data from the Global Database of Events, Language, and Tone (GDELT) (\textcite{leetaru2013gdelt}) to scrape a rich set of sentiment measures from 1.3 million news articles mentioning the major U.S. commercial airlines. GDELT's Global Knowledge Graph (GKG) database provides over 2000 sentiment measures in the form of word counts and scored values, and the database is updated every 15 minutes and is freely available online. We additionally use a large language model to encode additional sentiment from the headline of the GDELT articles. We use these (and other) data to predict intraday trading volumes for 7 major U.S. airline stocks in 15-minute increments during the trading days from January 2018 to May 2025.
 
 This paper appears to be the first to publicly examine such a large volume of real-time GDELT data, the first to examine the effects of news sentiment on stock volumes at a sub-daily level in the airline industry, and the first to consider the large set of supplemental sentiment indicators offered by GDELT for stock prediction. All of our code used to scrape and examine GDELT is available free and open-source. The focus of this paper is on the problem of forecasting trading volume; we leave an assessment the actual profitability of our models to future work.
 
@@ -236,18 +236,18 @@ All models are evaluated using the out-of-sample $R^2$, described in the followi
 \begin{equation}
     R^2_{OOS} = 1 - \frac{\sum_{i\in O} (y_i - \hat{y}_i)^2}{\sum_{i\in O} (y_i - \bar{y}_i)^2}.
 \end{equation}
-In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the out-of-sample $R^2$ is that it is possible for models to have a negative $R^2$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically assumed to be non-negative. OLS models with a constant are guaranteed to have a non-negative in-sample $R^2$.}
+In the formula, $O$ denotes the set of testing data, i.e. data that were not used in forming $\hat{y}$. One important aspect of the $R^2_{OOS}$ is that it is possible for models to have a negative $R^2_{OOS}$, if they perform worse than guessing the (out-of-sample) mean of the dependent variable.\footnote{While in-sample $R^2$ can also be negative in general, it is typically assumed to be non-negative. OLS models with a constant are guaranteed to have a non-negative in-sample $R^2$.}
 
-The following table reports the out-of-sample $R^2$ for each model and feature set. The results show that the LightGBM model with all features provides the best out-of-sample performance, with an $R^2$ of 0.7007. This is a slight improvement over the un-tuned model,\footnote{Hyperparameter tuning appeared to be unnecessary here, as it resulted in only a marginal improvement in performance.} and a non-trivial improvement over the OLS, LASSO, and Neural Network models. The LightGBM specification outperforms all other models for each feature set, reflecting its adept ability at recovering non-linear relationships in the data without overfitting.
+The following table reports the $R^2_{OOS}$ for each model and feature set. The results show that the LightGBM model with all features provides the best out-of-sample performance, with an $R^2_{OOS}$ of 0.7007. This is a slight improvement over the un-tuned model,\footnote{Hyperparameter tuning appeared to be unnecessary here, as it resulted in only a marginal improvement in performance.} and a non-trivial improvement over the OLS, LASSO, and Neural Network models. The LightGBM specification outperforms all other models for each feature set, reflecting its adept ability at recovering non-linear relationships in the data without overfitting.
 
 \input{../output/r2_table_overall.tex}
 
 Comparing the OLS and LASSO results shows that, besides the Sentiment Only feature set, the models provide similar performance. Surprisingly, however, the LASSO models consistently shrink a significant portion of coefficients: 392 of the 1576 features (nearly 25\%) are shrunk to zero in the model with all features.\footnote{Percentage of features shrunk to zero in the LASSO model by feature set: 0\% (Time Only), 9.9\% (Sentiment Only), 16.9\% (Own-Stock Only), 23.5\% (Market + Own-Stock), 24.3\% (Market + Own-Stock + Time), 24.9\% (All Features).} This suggests that the LASSO model identifies and removes a large number of features that do not contribute to the model's performance, although the features do not seem to hurt the OLS model's performance in general.
 
-The Sentiment Only model results show that OLS and the Neural Network models are unable to effectively utilize sentiment information, with the Neural Network model having a negative $R^2$. The LASSO and LightGBM models have low but non-trivial out-of-sample performance, with the LightGBM model clearly performing best at over double the $R^2$ of the LASSO model. This suggests that the sentiment measures provide a small but non-trivial amount of information for predicting stock volume when harnessed correctly.
+The Sentiment Only model results show that OLS and the Neural Network models are unable to effectively utilize sentiment information, with the Neural Network model having a negative $R^2_{OOS}$. The LASSO and LightGBM models have low but non-trivial out-of-sample performance, with the LightGBM model clearly performing best at over double the $R^2_{OOS}$ of the LASSO model. This suggests that the sentiment measures provide a small but non-trivial amount of information for predicting stock volume when harnessed correctly.
 
 \subsection{Model Predictions}
-All results in this section use the LightGBM model with the highest $R^2$ from the table above, unless otherwise specified.
+All results in this section use the LightGBM model with the highest $R^2_{OOS}$ from the table above, unless otherwise specified.
 
 First, we assess the model's out-of-sample performance on the validation and test sets (a combined 18 months of data) on a variety of subsets of the data. Figure \ref{fig:absolute_percent_error_distribution} reports the cumulative distribution of absolute percent error for the best model, as well as the baseline model. When plotted this way, a model is better at predicting volume if its cumulative distribution lies to the left of the other model's cumulative distribution. The figure shows that the LightGBM model is uniformly and significantly better than the baseline model on an absolute percent error basis. In other words, the best model's distribution of absolute percent error has first-order stochastic dominance over the baseline model.
 
@@ -337,29 +337,27 @@ To further explore the sentiment features' contribution to the model, Figure \re
 \begin{figure}[H]
     \centering
     \caption{Selected GDELT Sentiment Variables, Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment.pdf}
-    \begin{minipage}{0.75\linewidth}
+    \includegraphics[width=0.6\linewidth]{../Output/shap_abs_sentiment.pdf}
+    \begin{minipage}{0.6\linewidth}
         \footnotesize
         \singlespacing
         Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
     \end{minipage}
     \label{fig:shapley_sentiment}
 \end{figure}
-Besides the Care/Harm moral sentiment feature, the remaining features contribute very little to the model's predictions on average. Figure \ref{fig:shapley_sentiment_top20} below shows the top 20 sentiment features, including the LLM dimensions, sorted by mean absolute Shapley value.
+Besides the Care/Harm moral sentiment feature, the remaining features contribute very little to the model's predictions on average. Figure \ref{fig:shapley_sentiment_gdelt_top10} below shows the top 10 GDELT sentiment features, sorted by mean absolute Shapley value.\footnote{In Appendix Figure \ref{fig:shapley_sentiment_top20}, we report the overall top 20 sentiment features, including the LLM dimensions. The LLM dimensions often have higher mean absolute Shapley values than the GDELT features, but lack interpretability. Future work is needed to explore methods to better understand why certain LLM dimensions explain trading volume better than traditional sentiment features.}
 
 \begin{figure}[H]
     \centering
-    \caption{Top 20 Sentiment Features by Mean Absolute Shapley Value}
-    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment_top20.pdf}
-    \begin{minipage}{0.75\linewidth}
+    \caption{Top 10 GDELT Sentiment Features by Mean Absolute Shapley Value}
+    \includegraphics[width=0.6\linewidth]{../Output/shap_abs_sentiment_gdelt_top10.pdf}
+    \begin{minipage}{0.6\linewidth}
         \footnotesize
         \singlespacing
         Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
     \end{minipage}
-    \label{fig:shapley_sentiment_top20}
+    \label{fig:shapley_sentiment_gdelt_top10}
 \end{figure}
-
-There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 21st dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance.\footnote{We trained a LightGBM with all features except the LLM variables and found an $R^2$ of 0.6932, which is better than the model without sentiment features, but worse than the model with all features.} Regardless, even the most important sentiment feature has a mean absolute Shapley value that is about 2\% the size of the most important feature overall.
 
 As an additional study of the effects of sentiment on the model's predictions, we analyze how the model predicts volume for American Airlines surrounding the Jan. 2025 crash in Washington, D.C. that killed 67 people.\footnote{\url{https://apnews.com/article/ronald-reagan-national-airport-crash-325edc6c0c2439dd6c1e73a81e382c0e}.} Specifically, we look at the model's predictions of volume both with and without the effects of the sentiment features by removing their Shapley values.
 
@@ -393,8 +391,8 @@ We use the last price in each 15-minute period for the VWAP formula.\footnote{Id
 \begin{figure}[H]
     \centering
     \caption{VWAP Tracking Error Comparison by Ticker}
-    \includegraphics[width=0.85\linewidth]{../Output/vwap_compare.pdf}
-    \begin{minipage}{0.8\linewidth}
+    \includegraphics[width=0.7\linewidth]{../Output/vwap_compare.pdf}
+    \begin{minipage}{0.7\linewidth}
         \footnotesize
         \singlespacing
         Note: For each model, we calculate the daily volume weighted average price as a function of predicted volume and actual price in each 15-minute bin. The bars report the average absolute percent difference between actual daily VWAP and predicted VWAP, by ticker, for the entire testing period of 2023-12-04 to 2025-05-30.
@@ -406,9 +404,9 @@ We use the last price in each 15-minute period for the VWAP formula.\footnote{Id
 \section{Discussion}
 \label{section:discussion}
 \subsection{Sentiment}
-As shown in the results above, lagged sentiment features appear to provide some meaningful information in predicting stock volume, though it is a small contribution. A model trained only with the sentiment features (Sentiment Only) has an out-of-sample $R^2$ of 0.0762 with the LightGBM model, which is roughly comparable to a model that only uses the time indicators (Time Only), with an $R^2$ of 0.0978.\footnote{We did not test the hypothesis that the Sentiment Only $R^2$ is greater than 0, but with the large size of the testing data, it is likely that the $R^2$ is statistically significant.} We report in the Appendix, Section \ref{section:appendix_sentiment} that the sentiment-only model recovers about as much information as could possibly be learned from these variables, as compared to an oracle model that can incorporate current-time information.
+As shown in the results above, lagged sentiment features appear to provide some meaningful information in predicting stock volume, though it is a small contribution. A model trained only with the sentiment features (Sentiment Only) has an out-of-sample $R^2$ of 0.0762 with the LightGBM model, which is roughly comparable to a model that only uses the time indicators (Time Only), with an $R^2_{OOS}$ of 0.0978.\footnote{We did not test the hypothesis that the Sentiment Only $R^2_{OOS}$ is greater than 0, but with the large size of the testing data, it is likely that the $R^2_{OOS}$ is statistically significant.} We report in the Appendix, Section \ref{section:appendix_sentiment} that the sentiment-only model recovers about as much information as could possibly be learned from these variables, as compared to an oracle model that can incorporate current-time information.
 
-Adding the sentiment indicators improves each model's performance, but only marginally so. The best-performing model (LightGBM), improves its $R^2$ from 0.6893 to 0.6952 when incorporating the sentiment indicators into the model, not even a 1 percentage point increase. While it is an improvement,\footnote{Note that by analyzing out-of-sample $R^2$, this improvement is not due to simply overfitting the data.} the lack of a large increase in performance suggests that historical financial data absorbs nearly all relevant sentiment information. While a financial institution seeking the most accurate forecasts may want to use GDELT's sentiment data as part of their volume forecasting, the data collection and curation costs are likely not worth the marginal increase in performance. On the contrary, the stock and other financial data are available at much lower cost and do not require the same level of curation.
+Adding the sentiment indicators improves each model's performance, but only marginally so. The best-performing model (LightGBM), improves its $R^2_{OOS}$ from 0.6893 to 0.6952 when incorporating the sentiment indicators into the model, not even a 1 percentage point increase. While it is an improvement,\footnote{Note that by analyzing out-of-sample $R^2$, this improvement is not due to simply overfitting the data.} the lack of a large increase in performance suggests that historical financial data absorbs nearly all relevant sentiment information. While a financial institution seeking the most accurate forecasts may want to use GDELT's sentiment data as part of their volume forecasting, the data collection and curation costs are likely not worth the marginal increase in performance. On the contrary, the stock and other financial data are available at much lower cost and do not require the same level of curation.
 
 \subsection{Model Performance Compared to the Literature}
 In this section, we compare the various results reported above (and in our Appendix) to existing literature on stock volume prediction.
@@ -426,7 +424,7 @@ We identified relevant sentiment features using judgement and experimentation, a
 
 Since influential news events are typically rare for a specific company, including the sentiment features along with the finance features in a single model may not have been optimal. A better approach might have been to train a baseline model on financial features, and then train a separate model to identify the impact of sentiment on volume, i.e. as a modifier.
 
-Our best model was designed to maximize the $R^2$ of volume predictions on the testing set, but this does not necesarilly transfer to the highest cost savings or minimized VWAP tracking error. A more sophisticated approach would train models with the objective of minimizing tracking error. \textcite{goyenko2024trading} recognize that there is a fundamental difference between ``statistical'' loss and ``economic'' loss: overestimating volume when actual volume is low is much more costly than underestimating it, and so the authors implement an asymmetric loss function to account for this. A model designed to minimize tracking error would certainly improve over our best model.
+Our best model was designed to maximize the $R^2_{OOS}$ of volume predictions on the testing set, but this does not necesarilly transfer to the highest cost savings or minimized VWAP tracking error. A more sophisticated approach would train models with the objective of minimizing tracking error. \textcite{goyenko2024trading} recognize that there is a fundamental difference between ``statistical'' loss and ``economic'' loss: overestimating volume when actual volume is low is much more costly than underestimating it, and so the authors implement an asymmetric loss function to account for this. A model designed to minimize tracking error would certainly improve over our best model.
 
 \section{Conclusion}
 \label{section:conclusion}
@@ -439,7 +437,7 @@ The model results confirm that stock volume can be accurately forecasted better 
 \section{Appendix}
 \subsection{Model Performance}
 \label{section:appendix_model_performance}
-A table showing the MAPE for each model tested is shown below. The baseline model has a MAPE of 0.678.
+A table showing the MAPE for each model tested is shown below. The baseline model has a MAPE of 0.678. Lower MAPE represents a better model fit.
 \input{../output/mape_table_overall.tex}
 
 \subsubsection{Alternative Model Specification}
@@ -462,6 +460,23 @@ The figure below reports the average VWAP tracking error for each model tested, 
     \end{minipage}
     \label{fig:vwap_tracking_error_all}
 \end{figure}
+
+\subsection{Sentiment Shapley Values}
+
+Below, we report the top 20 sentiment features by mean absolute Shapley value. This includes both GDELT sentiment features and the LLM dimensions. The LLM dimensions come from encoding the article's headline text into a 32-dimensional vector, which enters into the prediction model as 32 separate features. The LLM dimensions are often more important than the GDELT sentiment features, but they lack interpretability.
+\begin{figure}[H]
+    \centering
+    \caption{Top 20 Sentiment Features by Mean Absolute Shapley Value}
+    \includegraphics[width=0.75\linewidth]{../Output/shap_abs_sentiment_top20.pdf}
+    \begin{minipage}{0.75\linewidth}
+        \footnotesize
+        \singlespacing
+        Note: Each bar reports how much a given feature contributes (in absolute value) to the best model's predicted volume. The Shapley values are calculated over the entire testing period of 2023-12-04 to 2025-05-30.
+    \end{minipage}
+    \label{fig:shapley_sentiment_top20}
+\end{figure}
+
+There is a notable gap between the most important sentiment feature and the rest of the sentiment features. The most important sentiment feature is the 21st dimension of the headline LLM embedding as mentioned above, and the next most important feature (a word count for mentions of the Central Bank) has less than one third of its impact. It is also notable that the LLM dimensions often surpass the GDELT sentiment measures in importance. We trained a LightGBM with all features except the LLM variables and found an $R^2_{OOS}$ of 0.6932, which is better than the model without sentiment features, but worse than the model with all features. Regardless, even the most important sentiment feature has a mean absolute Shapley value that is about 2\% the size of the most important feature overall.
 
 \subsection{GDELT Data Processing}
 \label{section:gdelt_details}
