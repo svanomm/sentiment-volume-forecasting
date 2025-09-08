@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  8 SEP 2025 18:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  8 SEP 2025 19:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -798,10 +798,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [11]
 
 [12]
-<../Output/GDELT Processing Diagram.pdf, id=269, 722.7pt x 406.51875pt>
+<../Output/GDELT Processing Diagram.pdf, id=268, 722.7pt x 406.51875pt>
 File: ../Output/GDELT Processing Diagram.pdf Graphic file (type pdf)
 <use ../Output/GDELT Processing Diagram.pdf>
-Package pdftex.def Info: ../Output/GDELT Processing Diagram.pdf  used on input line 143.
+Package pdftex.def Info: ../Output/GDELT Processing Diagram.pdf  used on input line 141.
 (pdftex.def)             Requested size: 375.80544pt x 211.39096pt.
 
 
@@ -810,10 +810,10 @@ Package pdftex.def Info: ../Output/GDELT Processing Diagram.pdf  used on input l
 [14]
 
 [15] (../Output/summary_volume.tex)
-<../Output/monthly_volume_plot.pdf, id=316, 419.19548pt x 298.29831pt>
+<../Output/monthly_volume_plot.pdf, id=314, 419.19548pt x 298.29831pt>
 File: ../Output/monthly_volume_plot.pdf Graphic file (type pdf)
 <use ../Output/monthly_volume_plot.pdf>
-Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 189.
+Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 187.
 (pdftex.def)             Requested size: 328.82707pt x 233.99626pt.
 
 
@@ -821,30 +821,30 @@ Package pdftex.def Info: ../Output/monthly_volume_plot.pdf  used on input line 1
 <../Output/alk_event_plot_52.pdf, id=325, 860.10648pt x 714.7616pt>
 File: ../Output/alk_event_plot_52.pdf Graphic file (type pdf)
 <use ../Output/alk_event_plot_52.pdf>
-Package pdftex.def Info: ../Output/alk_event_plot_52.pdf  used on input line 197.
+Package pdftex.def Info: ../Output/alk_event_plot_52.pdf  used on input line 195.
 (pdftex.def)             Requested size: 422.77664pt x 351.3378pt.
 
 
 [17 <../Output/monthly_volume_plot.pdf>]
 
 [18 <../Output/alk_event_plot_52.pdf>]
-<../Output/correlations.pdf, id=414, 520.46974pt x 708.01262pt>
+<../Output/correlations.pdf, id=412, 520.46974pt x 708.01262pt>
 File: ../Output/correlations.pdf Graphic file (type pdf)
 <use ../Output/correlations.pdf>
-Package pdftex.def Info: ../Output/correlations.pdf  used on input line 207.
+Package pdftex.def Info: ../Output/correlations.pdf  used on input line 205.
 (pdftex.def)             Requested size: 281.85587pt x 383.43387pt.
 
 
 [19]
-<../Output/Volume Autocorrelations.pdf, id=425, 1011.78pt x 361.35pt>
+<../Output/Volume Autocorrelations.pdf, id=423, 1011.78pt x 361.35pt>
 File: ../Output/Volume Autocorrelations.pdf Graphic file (type pdf)
 <use ../Output/Volume Autocorrelations.pdf>
-Package pdftex.def Info: ../Output/Volume Autocorrelations.pdf  used on input line 221.
+Package pdftex.def Info: ../Output/Volume Autocorrelations.pdf  used on input line 219.
 (pdftex.def)             Requested size: 469.75502pt x 167.77238pt.
 
 
 [20 <../Output/correlations.pdf>]
-Overfull \hbox (2.61183pt too wide) in paragraph at lines 230--231
+Overfull \hbox (2.61183pt too wide) in paragraph at lines 228--229
 []\OT1/cmr/m/n/12 Stock vol-ume au-to-cor-re-la-tion has a con-sis-tent (and there-fore pre-dictable) pat-tern. Change
  []
 
@@ -860,74 +860,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 [22]
 
 [23]
-<../Output/absolute_percent_error_distribution.pdf, id=559, 462.52798pt x 346.89601pt>
+<../Output/absolute_percent_error_distribution.pdf, id=558, 462.52798pt x 346.89601pt>
 File: ../Output/absolute_percent_error_distribution.pdf Graphic file (type pdf)
 <use ../Output/absolute_percent_error_distribution.pdf>
-Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 257.
+Package pdftex.def Info: ../Output/absolute_percent_error_distribution.pdf  used on input line 255.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
 [24]
-<../Output/mape_by_time.pdf, id=566, 462.52798pt x 346.89601pt>
+<../Output/mape_by_time.pdf, id=565, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_time.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time.pdf>
-Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 270.
+Package pdftex.def Info: ../Output/mape_by_time.pdf  used on input line 268.
 (pdftex.def)             Requested size: 352.31625pt x 264.25241pt.
 
 
 [25 <../Output/absolute_percent_error_distribution.pdf>]
-<../Output/mape_by_time_by_ticker.pdf, id=611, 867.24pt x 1156.32pt>
+<../Output/mape_by_time_by_ticker.pdf, id=610, 867.24pt x 1156.32pt>
 File: ../Output/mape_by_time_by_ticker.pdf Graphic file (type pdf)
 <use ../Output/mape_by_time_by_ticker.pdf>
-Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 284.
+Package pdftex.def Info: ../Output/mape_by_time_by_ticker.pdf  used on input line 282.
 (pdftex.def)             Requested size: 352.31625pt x 469.75385pt.
 
 
 [26 <../Output/mape_by_time.pdf>]
-<../Output/mape_by_day_of_week.pdf, id=664, 462.52798pt x 346.89601pt>
+<../Output/mape_by_day_of_week.pdf, id=663, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_week.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_week.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 297.
+Package pdftex.def Info: ../Output/mape_by_day_of_week.pdf  used on input line 295.
 (pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
 
 
 [27 <../Output/mape_by_time_by_ticker.pdf>]
-<../Output/mape_by_day_of_month.pdf, id=728, 462.52798pt x 346.89601pt>
+<../Output/mape_by_day_of_month.pdf, id=727, 462.52798pt x 346.89601pt>
 File: ../Output/mape_by_day_of_month.pdf Graphic file (type pdf)
 <use ../Output/mape_by_day_of_month.pdf>
-Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 309.
+Package pdftex.def Info: ../Output/mape_by_day_of_month.pdf  used on input line 307.
 (pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
 
 
 [28 <../Output/mape_by_day_of_week.pdf>]
-<../Output/shap_abs_all.pdf, id=781, 570.92294pt x 570.08173pt>
+<../Output/shap_abs_all.pdf, id=780, 570.92294pt x 570.08173pt>
 File: ../Output/shap_abs_all.pdf Graphic file (type pdf)
 <use ../Output/shap_abs_all.pdf>
-Package pdftex.def Info: ../Output/shap_abs_all.pdf  used on input line 325.
+Package pdftex.def Info: ../Output/shap_abs_all.pdf  used on input line 323.
 (pdftex.def)             Requested size: 352.31625pt x 351.80295pt.
 
 
 [29 <../Output/mape_by_day_of_month.pdf>]
-<../Output/shap_abs_sentiment.pdf, id=830, 426.34845pt x 425.54169pt>
+<../Output/shap_abs_sentiment.pdf, id=829, 426.34845pt x 425.54169pt>
 File: ../Output/shap_abs_sentiment.pdf Graphic file (type pdf)
 <use ../Output/shap_abs_sentiment.pdf>
-Package pdftex.def Info: ../Output/shap_abs_sentiment.pdf  used on input line 340.
+Package pdftex.def Info: ../Output/shap_abs_sentiment.pdf  used on input line 338.
 (pdftex.def)             Requested size: 281.85587pt x 281.3194pt.
 
 
 [30 <../Output/shap_abs_all.pdf>]
-<../Output/shap_abs_sentiment_gdelt_top10.pdf, id=891, 571.5202pt x 570.08173pt>
+<../Output/shap_abs_sentiment_gdelt_top10.pdf, id=890, 571.5202pt x 570.08173pt>
 File: ../Output/shap_abs_sentiment_gdelt_top10.pdf Graphic file (type pdf)
 <use ../Output/shap_abs_sentiment_gdelt_top10.pdf>
-Package pdftex.def Info: ../Output/shap_abs_sentiment_gdelt_top10.pdf  used on input line 353.
+Package pdftex.def Info: ../Output/shap_abs_sentiment_gdelt_top10.pdf  used on input line 351.
 (pdftex.def)             Requested size: 281.85587pt x 281.15182pt.
 
 
 [31 <../Output/shap_abs_sentiment.pdf>]
-<../Output/shap_aal_crash.pdf, id=955, 859.57262pt x 426.36353pt>
+<../Output/shap_aal_crash.pdf, id=954, 859.57262pt x 426.36353pt>
 File: ../Output/shap_aal_crash.pdf Graphic file (type pdf)
 <use ../Output/shap_aal_crash.pdf>
-Package pdftex.def Info: ../Output/shap_aal_crash.pdf  used on input line 367.
+Package pdftex.def Info: ../Output/shap_aal_crash.pdf  used on input line 365.
 (pdftex.def)             Requested size: 469.75502pt x 233.00432pt.
 
 
@@ -936,10 +936,10 @@ Package pdftex.def Info: ../Output/shap_aal_crash.pdf  used on input line 367.
 [33 <../Output/shap_aal_crash.pdf>]
 
 [34]
-<../Output/vwap_compare.pdf, id=1094, 462.52798pt x 346.89601pt>
+<../Output/vwap_compare.pdf, id=1093, 462.52798pt x 346.89601pt>
 File: ../Output/vwap_compare.pdf Graphic file (type pdf)
 <use ../Output/vwap_compare.pdf>
-Package pdftex.def Info: ../Output/vwap_compare.pdf  used on input line 394.
+Package pdftex.def Info: ../Output/vwap_compare.pdf  used on input line 392.
 (pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
 
 
@@ -965,18 +965,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 )
 
 [43]
-<../Output/vwap_compare_all_models.pdf, id=1203, 722.7pt x 722.7pt>
+<../Output/vwap_compare_all_models.pdf, id=1206, 722.7pt x 722.7pt>
 File: ../Output/vwap_compare_all_models.pdf Graphic file (type pdf)
 <use ../Output/vwap_compare_all_models.pdf>
-Package pdftex.def Info: ../Output/vwap_compare_all_models.pdf  used on input line 455.
+Package pdftex.def Info: ../Output/vwap_compare_all_models.pdf  used on input line 453.
 (pdftex.def)             Requested size: 469.75502pt x 469.76045pt.
 
 
 [44]
-<../Output/shap_abs_sentiment_top20.pdf, id=1208, 571.63936pt x 570.08173pt>
+<../Output/shap_abs_sentiment_top20.pdf, id=1211, 571.63936pt x 570.08173pt>
 File: ../Output/shap_abs_sentiment_top20.pdf Graphic file (type pdf)
 <use ../Output/shap_abs_sentiment_top20.pdf>
-Package pdftex.def Info: ../Output/shap_abs_sentiment_top20.pdf  used on input line 470.
+Package pdftex.def Info: ../Output/shap_abs_sentiment_top20.pdf  used on input line 468.
 (pdftex.def)             Requested size: 352.31625pt x 351.35931pt.
 
 
@@ -1012,21 +1012,21 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22610 strings out of 467887
- 389126 string characters out of 5438214
- 1284643 words of memory out of 5000000
- 50669 multiletter control sequences out of 15000+600000
- 646639 words of font info for 113 fonts, out of 8000000 for 9000
+ 22616 strings out of 467887
+ 389213 string characters out of 5438214
+ 1283634 words of memory out of 5000000
+ 50674 multiletter control sequences out of 15000+600000
+ 647109 words of font info for 115 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,1948b,1952s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (55 pages, 667976 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (55 pages, 684184 bytes).
 PDF statistics:
- 1540 PDF objects out of 1728 (max. 8388607)
- 737 compressed objects within 8 object streams
- 197 named destinations out of 1000 (max. 500000)
+ 1551 PDF objects out of 1728 (max. 8388607)
+ 744 compressed objects within 8 object streams
+ 196 named destinations out of 1000 (max. 500000)
  294 words of extra memory for PDF output out of 10000 (max. 10000000)
 
