@@ -56,18 +56,16 @@ If you use this work in your research, please cite:
   title={Predicting Intraday Trading Volume with News Sentiment: An Analysis of U.S. Airline Stocks},
   author={VanOmmeren, Steven},
   year={2025},
-  url={[https://github.com/svanomm/svo-directed-practicum](https://github.com/svanomm/sentiment-volume-forecasting)}
+  url={https://github.com/svanomm/sentiment-volume-forecasting}
 }
 ```
 
 ## License
 
-This project is licensed under the MIT License, however we make no claim as to the licenses of the packages relied upon in this work. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License, however we make no claim as to the licenses of the packages or underlying data relied upon in this work. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
 For questions or collaboration opportunities, please contact Steven VanOmmeren.
 
 ---
-
-*This project appears to be the first to publicly examine such a large volume of real-time GDELT data for airline stock prediction, providing valuable insights for both academic research and practical business applications.*
